@@ -2216,13 +2216,65 @@
         // Nút cuộn lên đầu trang
         const showScrollToTop = ref(false);
 
+        const processProducts = (products) => {
+          const defaultRatios = {
+            P: {
+              "1BR+": { ttc: 0.9706, tts: 0.8843, vay70: 0.9904, camket: 1.0182 },
+              "2BR": { ttc: 0.9637, tts: 0.8780, vay70: 0.9834, camket: 1.0239 },
+              "2BR+": { ttc: 0.9631, tts: 0.8775, vay70: 0.9828, camket: 1.0182 },
+              "3BR": { ttc: 0.9530, tts: 0.8683, vay70: 0.9724, camket: 1.0182 },
+              "STU": { ttc: 0.9671, tts: 0.8811, vay70: 0.9868, camket: 1.0182 },
+              "STUDIO": { ttc: 0.9674, tts: 0.8814, vay70: 0.9872, camket: 1.0182 }
+            },
+            M: {
+              "1BR+": { ttc: 0.9714, tts: 0.8850, vay70: 0.9912, camket: 1.0131 },
+              "2BR": { ttc: 0.9645, tts: 0.8787, vay70: 0.9842, camket: 1.0131 },
+              "2BR+": { ttc: 0.9649, tts: 0.8791, vay70: 0.9846, camket: 1.0131 },
+              "3BR": { ttc: 0.9558, tts: 0.8708, vay70: 0.9753, camket: 1.0131 },
+              "STU": { ttc: 0.9671, tts: 0.8811, vay70: 0.9868, camket: 1.0131 },
+              "STUDIO": { ttc: 0.9674, tts: 0.8814, vay70: 0.9872, camket: 1.0131 }
+            }
+          };
+
+          const defaultFallback = { ttc: 0.965, tts: 0.88, vay70: 0.985, camket: 1.018 };
+
+          return products.map(p => {
+            if (!p.price || p.price <= 0) return p;
+
+            const needsCalculation = !p.priceTTC || !p.priceTTS || !p.priceVay70 || !p.priceVayCamKet;
+            if (!needsCalculation) return p;
+
+            const isM = p.code && p.code.toUpperCase().includes('M');
+            const groupKey = isM ? 'M' : 'P';
+            const typeKey = (p.type || '').trim().toUpperCase();
+
+            let ratio = defaultFallback;
+            if (defaultRatios[groupKey] && defaultRatios[groupKey][typeKey]) {
+              ratio = defaultRatios[groupKey][typeKey];
+            } else {
+              const matchedType = Object.keys(defaultRatios[groupKey]).find(k => k.includes(typeKey) || typeKey.includes(k));
+              if (matchedType) {
+                ratio = defaultRatios[groupKey][matchedType];
+              }
+            }
+
+            return {
+              ...p,
+              priceTTC: p.priceTTC || Math.round(p.price * ratio.ttc),
+              priceTTS: p.priceTTS || Math.round(p.price * ratio.tts),
+              priceVay70: p.priceVay70 || Math.round(p.price * ratio.vay70),
+              priceVayCamKet: p.priceVayCamKet || Math.round(p.price * ratio.camket)
+            };
+          });
+        };
+
         const loadInventoryRealtime = () => {
           isLoadingInventory.value = true;
           
           // Kiểm tra nếu chạy bằng giao thức file cục bộ (file://) thì dùng dữ liệu fallback ngay tránh bị CORS block
           if (window.location.protocol === 'file:') {
             console.warn("Chạy offline qua giao thức file://, sử dụng dữ liệu bảng hàng fallback đã build sẵn.");
-            allProducts.value = window.__FALLBACK_PRODUCTS__ || [];
+            allProducts.value = processProducts(window.__FALLBACK_PRODUCTS__ || []);
             isLoadingInventory.value = false;
             
             if (subdivisions.value.length > 0) {
@@ -2354,7 +2406,7 @@
                 }
               }
 
-              allProducts.value = parsedProducts;
+              allProducts.value = processProducts(parsedProducts);
               isLoadingInventory.value = false;
               
               // Khởi tạo tòa nhà đầu tiên có sản phẩm làm mặc định
@@ -2367,7 +2419,7 @@
             },
             error: function(err) {
               console.error("Lỗi khi tải bảng hàng realtime, sử dụng dữ liệu fallback đã build:", err);
-              allProducts.value = window.__FALLBACK_PRODUCTS__ || [];
+              allProducts.value = processProducts(window.__FALLBACK_PRODUCTS__ || []);
               isLoadingInventory.value = false;
               
               if (subdivisions.value.length > 0) {
