@@ -1036,7 +1036,7 @@
                           <button @click="openImage(getApartmentImage(cp.code, cp.type))" class="w-8 h-8 rounded-full bg-white/95 shadow text-slate-700 flex items-center justify-center hover:bg-white transition-all hover:scale-105" title="Phóng to">
                             <i class="bi bi-fullscreen text-xs"></i>
                           </button>
-                          <a :href="getApartmentImage(cp.code, cp.type)" download class="w-8 h-8 rounded-full bg-white/95 shadow text-slate-700 flex items-center justify-center hover:bg-white transition-all hover:scale-105" title="Tải ảnh" @click.stop>
+                          <a v-if="!isMobileDevice" :href="getApartmentImage(cp.code, cp.type)" download class="w-8 h-8 rounded-full bg-white/95 shadow text-slate-700 flex items-center justify-center hover:bg-white transition-all hover:scale-105" title="Tải ảnh" @click.stop>
                             <i class="bi bi-download text-xs"></i>
                           </a>
                         </div>
@@ -1347,7 +1347,7 @@
                 <button @click="isDetailsLightboxOpen = true" class="w-9 h-9 rounded-full bg-white/95 shadow-md flex items-center justify-center text-slate-600 hover:bg-white transition-all hover:scale-105" title="Phóng to">
                   <i class="bi bi-fullscreen text-sm"></i>
                 </button>
-                <a :href="getApartmentImage(selectedProductDetails.code, selectedProductDetails.type)" download class="w-9 h-9 rounded-full bg-white/95 shadow-md flex items-center justify-center text-slate-600 hover:bg-white transition-all hover:scale-105" title="Tải ảnh" @click.stop>
+                <a v-if="!isMobileDevice" :href="getApartmentImage(selectedProductDetails.code, selectedProductDetails.type)" download class="w-9 h-9 rounded-full bg-white/95 shadow-md flex items-center justify-center text-slate-600 hover:bg-white transition-all hover:scale-105" title="Tải ảnh" @click.stop>
                   <i class="bi bi-download text-sm"></i>
                 </a>
                 <button @click="shareProject" class="w-9 h-9 rounded-full bg-white/95 shadow-md flex items-center justify-center text-slate-600 hover:bg-white transition-all hover:scale-105" title="Chia sẻ">
@@ -1862,16 +1862,22 @@
         class="max-w-full max-h-[85vh] object-contain rounded shadow-2xl"
         @click.stop
       >
-      <div class="mt-4 flex gap-4 text-xs font-bold text-white/80">
-        <span class="bg-black/60 px-4 py-2 rounded-full border border-white/10">Mã Căn: {{ selectedProductDetails.code }}</span>
-        <a 
-          :href="getApartmentImage(selectedProductDetails.code, selectedProductDetails.type)" 
-          download 
-          class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-full flex items-center gap-1 transition-all"
-          @click.stop
-        >
-          <i class="bi bi-download"></i> Tải ảnh về máy
-        </a>
+      <div class="mt-4 flex flex-col sm:flex-row items-center gap-3 text-xs font-bold text-white/80">
+        <div class="flex items-center gap-3">
+          <span class="bg-black/60 px-4 py-2 rounded-full border border-white/10">Mã Căn: {{ selectedProductDetails.code }}</span>
+          <a 
+            v-if="!isMobileDevice"
+            :href="getApartmentImage(selectedProductDetails.code, selectedProductDetails.type)" 
+            download 
+            class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-full flex items-center gap-1 transition-all"
+            @click.stop
+          >
+            <i class="bi bi-download"></i> Tải ảnh về máy
+          </a>
+        </div>
+        <span v-if="isMobileDevice" class="text-slate-400 text-[11px] text-center font-bold px-4">
+          Mẹo trên điện thoại: Nhấn giữ vào ảnh trên và chọn "Lưu hình ảnh" để tải về máy.
+        </span>
       </div>
     </div>
 
@@ -1885,8 +1891,9 @@
         class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
         @click.stop
       >
-      <div class="mt-4 flex gap-4 text-xs font-bold text-white/80">
+      <div class="mt-4 flex flex-col items-center gap-2 text-xs font-bold text-white/80">
         <a 
+          v-if="!isMobileDevice"
           :href="layoutLightboxImageUrl" 
           download 
           class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-full flex items-center gap-1 transition-all"
@@ -1894,6 +1901,39 @@
         >
           <i class="bi bi-download"></i> Tải ảnh về máy
         </a>
+        <span v-if="isMobileDevice" class="text-slate-400 text-[11px] text-center font-bold px-4">
+          Mẹo trên điện thoại: Nhấn giữ vào ảnh trên và chọn "Lưu hình ảnh" để tải về máy.
+        </span>
+      </div>
+    </div>
+
+    <!-- 2.3 Mobile Save Image Modal for Comparison Export -->
+    <div v-if="showCompareSaveModal && compareSaveImageUrl" class="fixed inset-0 bg-slate-950/90 flex flex-col justify-center items-center z-[100] p-4" @click="showCompareSaveModal = false">
+      <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden flex flex-col shadow-2xl relative mx-4" @click.stop>
+        <!-- Header -->
+        <div class="flex justify-between items-center px-4 py-3 bg-[#0b2545] text-white flex-shrink-0">
+          <h3 class="text-xs font-bold uppercase tracking-wider">Ảnh So Sánh Của Bạn</h3>
+          <button @click="showCompareSaveModal = false" class="text-slate-400 hover:text-white transition-colors w-7 h-7 rounded-full flex items-center justify-center hover:bg-slate-800">
+            <i class="bi bi-x-lg text-sm"></i>
+          </button>
+        </div>
+        
+        <!-- Content -->
+        <div class="p-4 overflow-y-auto max-h-[70vh] flex flex-col items-center gap-4 bg-slate-50">
+          <div class="bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold p-3.5 rounded-xl leading-relaxed text-center w-full">
+            <i class="bi bi-info-circle-fill text-blue-600 text-sm block mb-1"></i>
+            Bạn đang mở trang web trên điện thoại. Hãy <strong>nhấn giữ vào bức ảnh dưới đây khoảng 2 giây</strong> và chọn <strong>"Lưu hình ảnh"</strong> (hoặc "Tải hình ảnh xuống") để lưu vào album ảnh của điện thoại.
+          </div>
+          
+          <img :src="compareSaveImageUrl" class="max-w-full rounded-lg border border-slate-200 shadow-md">
+        </div>
+        
+        <!-- Footer -->
+        <div class="bg-slate-100 px-4 py-3 flex justify-end border-t border-slate-200 flex-shrink-0">
+          <button @click="showCompareSaveModal = false" class="bg-[#0b2545] hover:bg-slate-800 text-white font-extrabold text-xs px-4 py-2 rounded-lg transition-all shadow">
+            Đóng lại
+          </button>
+        </div>
       </div>
     </div>
 
@@ -2089,6 +2129,11 @@
         const activeTimers = ref({});
         let timerInterval = null;
 
+        // Các biến phát hiện và tối ưu tải ảnh trên thiết bị di động
+        const isMobileDevice = ref(false);
+        const showCompareSaveModal = ref(false);
+        const compareSaveImageUrl = ref('');
+
         const loadInventoryRealtime = () => {
           isLoadingInventory.value = true;
           
@@ -2280,6 +2325,9 @@
         });
 
         onMounted(() => {
+          // Phát hiện thiết bị di động / màn hình nhỏ để tối ưu hóa việc lưu ảnh
+          isMobileDevice.value = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
           // Tải dữ liệu bảng hàng realtime trực tuyến
           loadInventoryRealtime();
 
@@ -2616,13 +2664,26 @@
             backgroundColor: '#0f172a',
             scale: 2
           }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = `so-sanh-can-ho-${Date.now()}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-            if (btn) {
-              btn.innerHTML = originalText;
-              btn.disabled = false;
+            const dataUrl = canvas.toDataURL('image/png');
+            
+            if (isMobileDevice.value) {
+              // Trên điện thoại: hiển thị ảnh trong modal kèm hướng dẫn lưu
+              compareSaveImageUrl.value = dataUrl;
+              showCompareSaveModal.value = true;
+              if (btn) {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+              }
+            } else {
+              // Trên máy tính: tải xuống trực tiếp bằng liên kết a
+              const link = document.createElement('a');
+              link.download = `so-sanh-can-ho-${Date.now()}.png`;
+              link.href = dataUrl;
+              link.click();
+              if (btn) {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+              }
             }
           }).catch(err => {
             console.error('Lỗi khi tải hình ảnh so sánh:', err);
@@ -2700,7 +2761,10 @@
           toggleCompareProduct,
           clearAllCompare,
           goToCompareView,
-          downloadCompareImage
+          downloadCompareImage,
+          isMobileDevice,
+          showCompareSaveModal,
+          compareSaveImageUrl
         };
       }
     }).mount('#app');
