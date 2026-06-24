@@ -244,35 +244,35 @@
                 </div>
               </div>
 
-              <!-- 3 Parameters Grid (Khớp 100% screenshot) -->
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl flex items-center gap-4 shadow-sm">
-                  <div class="w-12 h-12 bg-emerald-500 text-white rounded-xl flex items-center justify-center shadow-md">
-                    <i class="bi bi-building-up text-2xl"></i>
+              <!-- 3 Parameters Grid (Khớp 100% screenshot, nay dàn hàng ngang trên mobile) -->
+              <div class="grid grid-cols-3 gap-2 sm:gap-4">
+                <div class="bg-emerald-50 border border-emerald-100 p-2 sm:p-4 rounded-xl flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1.5 sm:gap-4 shadow-sm">
+                  <div class="w-8 h-8 sm:w-12 sm:h-12 bg-emerald-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+                    <i class="bi bi-building-up text-base sm:text-2xl"></i>
                   </div>
                   <div>
-                    <span class="block text-[10px] font-bold text-emerald-600/80 uppercase tracking-wider">Tổng diện tích</span>
-                    <span class="font-extrabold text-lg text-slate-800">33,68 ha</span>
+                    <span class="block text-[8px] sm:text-[10px] font-bold text-emerald-600/80 uppercase tracking-wider leading-tight">Tổng diện tích</span>
+                    <span class="font-extrabold text-xs sm:text-lg text-slate-800">33,68 ha</span>
                   </div>
                 </div>
                 
-                <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-center gap-4 shadow-sm">
-                  <div class="w-12 h-12 bg-blue-500 text-white rounded-xl flex items-center justify-center shadow-md">
-                    <i class="bi bi-houses-fill text-2xl"></i>
+                <div class="bg-blue-50 border border-blue-100 p-2 sm:p-4 rounded-xl flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1.5 sm:gap-4 shadow-sm">
+                  <div class="w-8 h-8 sm:w-12 sm:h-12 bg-blue-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+                    <i class="bi bi-houses-fill text-base sm:text-2xl"></i>
                   </div>
                   <div>
-                    <span class="block text-[10px] font-bold text-blue-600/80 uppercase tracking-wider">Quy mô</span>
-                    <span class="font-extrabold text-lg text-slate-800">9 toà</span>
+                    <span class="block text-[8px] sm:text-[10px] font-bold text-blue-600/80 uppercase tracking-wider leading-tight">Quy mô</span>
+                    <span class="font-extrabold text-xs sm:text-lg text-slate-800">9 toà</span>
                   </div>
                 </div>
                 
-                <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl flex items-center gap-4 shadow-sm">
-                  <div class="w-12 h-12 bg-sky-500 text-white rounded-xl flex items-center justify-center shadow-md">
-                    <i class="bi bi-percent text-2xl font-bold"></i>
+                <div class="bg-sky-50 border border-sky-100 p-2 sm:p-4 rounded-xl flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1.5 sm:gap-4 shadow-sm">
+                  <div class="w-8 h-8 sm:w-12 sm:h-12 bg-sky-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+                    <i class="bi bi-percent text-base sm:text-2xl font-bold"></i>
                   </div>
                   <div>
-                    <span class="block text-[10px] font-bold text-sky-600/80 uppercase tracking-wider">Mật độ xây dựng</span>
-                    <span class="font-extrabold text-lg text-slate-800">24,8%</span>
+                    <span class="block text-[8px] sm:text-[10px] font-bold text-sky-600/80 uppercase tracking-wider leading-tight">Mật độ xây dựng</span>
+                    <span class="font-extrabold text-xs sm:text-lg text-slate-800">24,8%</span>
                   </div>
                 </div>
               </div>
@@ -366,7 +366,7 @@
                   </button>
                 </div>
 
-                <div v-if="project.typicalLayouts[activeTypicalLayoutIndex]" class="border border-slate-200 rounded-xl overflow-hidden bg-white p-4 shadow-md flex items-center justify-center min-h-[400px]">
+                <div v-if="project.typicalLayouts[activeTypicalLayoutIndex]" class="border border-slate-200 rounded-xl overflow-hidden bg-white p-1 sm:p-4 shadow-md flex items-center justify-center min-h-[200px] sm:min-h-[400px]">
                   <img 
                     :src="project.typicalLayouts[activeTypicalLayoutIndex].image" 
                     class="max-w-full max-h-[600px] object-contain transition-all duration-300 rounded-lg hover:scale-[1.02] cursor-zoom-in"
@@ -379,16 +379,16 @@
 
             <!-- Banner tiện ích & Slider tiện ích -->
             <div class="space-y-6">
-              <div class="rounded-2xl overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 p-6 sm:p-10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="max-w-md space-y-4 text-white">
+              <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-900 via-teal-950 to-slate-950 p-4 sm:p-8 md:p-10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="w-full md:w-[30%] space-y-4 text-white flex-shrink-0">
                   <h3 class="text-xl sm:text-2xl font-extrabold uppercase leading-tight text-emerald-400">
                     TIỆN ÍCH ĐẲNG CẤP RESORT
                   </h3>
-                  <p class="text-xs sm:text-sm font-medium text-blue-100 leading-relaxed">
+                  <p class="text-xs sm:text-sm font-medium text-teal-100/90 leading-relaxed">
                     Trải nghiệm hệ thống tiện ích đẳng cấp đặc quyền trong phân khu The Parkland: hồ bơi resort, vườn thiền, công viên nội khu và kết nối trực tiếp chuỗi đại tiện ích biển hồ Ocean City.
                   </p>
                 </div>
-                <div class="w-full md:w-3/5 rounded-xl overflow-hidden border-2 border-white/20 shadow-md relative bg-slate-900 aspect-video flex items-center justify-center">
+                <div class="w-full md:w-[65%] rounded-xl overflow-hidden border-2 border-white/20 shadow-md relative bg-slate-900 aspect-video flex items-center justify-center">
                   <img :src="project.overviewImage" class="w-full h-full object-cover opacity-80">
                   <div class="absolute inset-0 flex items-center justify-center cursor-pointer">
                     <div class="w-14 h-14 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center text-white transition-all transform hover:scale-105 shadow-lg border border-white/20">
@@ -413,15 +413,25 @@
                     <i class="bi bi-chevron-right text-sm"></i>
                   </button>
 
-                  <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2 px-1 scroll-smooth" id="util-slider">
+                  <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2 px-1 scroll-smooth" id="util-slider" @scroll="handleUtilScroll">
                     <div v-for="(util, uIdx) in project.utilities" :key="uIdx" class="w-64 flex-shrink-0 border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-md">
                       <div class="h-44 overflow-hidden bg-slate-100 flex items-center justify-center">
                         <img :src="util.image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                       </div>
-                      <div class="bg-blue-800 py-3.5 px-4 text-center">
+                      <div class="bg-gradient-to-r from-emerald-800 to-teal-900 py-3.5 px-4 text-center">
                         <span class="text-xs font-extrabold text-white tracking-wider block truncate">{{ util.name }}</span>
                       </div>
                     </div>
+                  </div>
+
+                  <!-- Dots indicators -->
+                  <div v-if="project.utilities && project.utilities.length > 1" class="flex justify-center gap-1.5 mt-4">
+                    <button 
+                      v-for="(util, uIdx) in project.utilities" 
+                      :key="uIdx"
+                      @click="scrollUtilTo(uIdx)"
+                      :class="['w-2 h-2 rounded-full transition-all duration-300', activeUtilIndex === uIdx ? 'bg-emerald-500 w-4' : 'bg-slate-300']"
+                    ></button>
                   </div>
                 </div>
               </div>
@@ -441,7 +451,7 @@
                     <i class="bi bi-chevron-right text-sm"></i>
                   </button>
 
-                  <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4 px-2 scroll-smooth" id="product-slider">
+                  <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4 px-2 scroll-smooth" id="product-slider" @scroll="handleProductScroll">
                     <div 
                       v-for="(plan, pIdx) in project.floorPlans" 
                       :key="pIdx"
@@ -467,6 +477,16 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+
+                  <!-- Dots indicators -->
+                  <div v-if="project.floorPlans && project.floorPlans.length > 1" class="flex justify-center gap-1.5 mt-2">
+                    <button 
+                      v-for="(plan, pIdx) in project.floorPlans" 
+                      :key="pIdx"
+                      @click="scrollProductTo(pIdx)"
+                      :class="['w-2 h-2 rounded-full transition-all duration-300', activeProductIndex === pIdx ? 'bg-emerald-500 w-4' : 'bg-slate-300']"
+                    ></button>
                   </div>
                 </div>
               </div>
@@ -551,7 +571,7 @@
 
                 <!-- Display active layout map image -->
                 <div v-if="project.typicalLayouts[activeTypicalLayoutIndex]" class="space-y-4">
-                  <div class="border border-slate-200/60 rounded-2xl overflow-hidden bg-slate-50 p-4 shadow-md flex items-center justify-center min-h-[400px]">
+                  <div class="border border-slate-200/60 rounded-2xl overflow-hidden bg-slate-50 p-1 sm:p-4 shadow-md flex items-center justify-center min-h-[200px] sm:min-h-[400px]">
                     <img 
                       :src="project.typicalLayouts[activeTypicalLayoutIndex].image" 
                       class="max-w-full max-h-[600px] object-contain transition-all duration-300 rounded-xl cursor-zoom-in"
@@ -907,7 +927,7 @@
         </div>
 
         <!-- Cột Phải - 25% (Broker & Specs) -->
-        <div class="lg:col-span-1 space-y-6">
+        <div class="lg:col-span-1 lg:sticky lg:top-32 self-start space-y-6">
           
           <!-- Broker Card -->
           <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm text-center">
@@ -1024,7 +1044,7 @@
                     
                     <!-- Image card -->
                     <div class="space-y-3 pt-2">
-                      <div class="flex justify-between items-center bg-blue-900 text-white rounded-lg px-3 py-1 font-black text-sm tracking-wider">
+                      <div class="flex justify-between items-center bg-teal-900 text-white rounded-lg px-3 py-1 font-black text-sm tracking-wider">
                         <span>{{ cp.code }}</span>
                         <span class="text-[10px] font-bold bg-white/20 px-2 py-0.5 rounded uppercase">{{ cp.direction }}</span>
                       </div>
@@ -1080,29 +1100,61 @@
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Giá niêm yết (VAT)</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-black text-slate-900 text-sm md:text-base border-r border-slate-200">
-                    {{ formatPrice(cp.price) }}
+                  <td 
+                    v-for="cp in compareProducts" 
+                    :key="cp.id" 
+                    :class="[
+                      'py-3 px-4 font-black text-sm md:text-base border-r border-slate-200 text-center transition-all duration-300',
+                      isCheapest(cp, 'price') ? 'bg-blue-50 text-blue-600' : 'text-slate-900'
+                    ]"
+                  >
+                    <div>{{ formatPrice(cp.price) }}</div>
+                    <div v-if="isCheapest(cp, 'price')" class="text-[10px] font-bold text-blue-500 mt-0.5 select-none">Giá tốt nhất</div>
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-p-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Giá vay</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-black text-emerald-700 text-sm md:text-base border-r border-slate-200">
-                    {{ cp.priceVay70 ? formatPrice(cp.priceVay70) : '-' }}
+                  <td 
+                    v-for="cp in compareProducts" 
+                    :key="cp.id" 
+                    :class="[
+                      'py-3 px-4 font-black text-sm md:text-base border-r border-slate-200 text-center transition-all duration-300',
+                      isCheapest(cp, 'priceVay70') ? 'bg-blue-50 text-blue-600' : 'text-emerald-700'
+                    ]"
+                  >
+                    <div>{{ cp.priceVay70 ? formatPrice(cp.priceVay70) : '-' }}</div>
+                    <div v-if="cp.priceVay70 && isCheapest(cp, 'priceVay70')" class="text-[10px] font-bold text-blue-500 mt-0.5 select-none">Giá tốt nhất</div>
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-pv-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Giá TTS (Thanh toán sớm)</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-black text-emerald-700 text-sm md:text-base border-r border-slate-200">
-                    {{ cp.priceTTS ? formatPrice(cp.priceTTS) : '-' }}
+                  <td 
+                    v-for="cp in compareProducts" 
+                    :key="cp.id" 
+                    :class="[
+                      'py-3 px-4 font-black text-sm md:text-base border-r border-slate-200 text-center transition-all duration-300',
+                      isCheapest(cp, 'priceTTS') ? 'bg-blue-50 text-blue-600' : 'text-emerald-700'
+                    ]"
+                  >
+                    <div>{{ cp.priceTTS ? formatPrice(cp.priceTTS) : '-' }}</div>
+                    <div v-if="cp.priceTTS && isCheapest(cp, 'priceTTS')" class="text-[10px] font-bold text-blue-500 mt-0.5 select-none">Giá tốt nhất</div>
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-ptts-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Giá TTC (Thanh toán tiến độ)</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-black text-emerald-700 text-sm md:text-base border-r border-slate-200">
-                    {{ cp.priceTTC ? formatPrice(cp.priceTTC) : '-' }}
+                  <td 
+                    v-for="cp in compareProducts" 
+                    :key="cp.id" 
+                    :class="[
+                      'py-3 px-4 font-black text-sm md:text-base border-r border-slate-200 text-center transition-all duration-300',
+                      isCheapest(cp, 'priceTTC') ? 'bg-blue-50 text-blue-600' : 'text-emerald-700'
+                    ]"
+                  >
+                    <div>{{ cp.priceTTC ? formatPrice(cp.priceTTC) : '-' }}</div>
+                    <div v-if="cp.priceTTC && isCheapest(cp, 'priceTTC')" class="text-[10px] font-bold text-blue-500 mt-0.5 select-none">Giá tốt nhất</div>
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-pttc-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
@@ -1115,28 +1167,28 @@
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Loại hình</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-bold text-slate-700 border-r border-slate-200 uppercase">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-bold text-slate-700 border-r border-slate-200 uppercase text-center">
                     {{ cp.type }}
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-t-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Hướng</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     {{ cp.direction }}
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-d-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Diện tích thông thủy</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     {{ cp.areaUsable }} m²
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-au-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Tầng</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     {{ cp.floorNumber }}
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-f-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
@@ -1150,28 +1202,28 @@
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">DT đất</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 text-slate-400 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 text-slate-400 border-r border-slate-200 text-center">
                     -
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-ld-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">DT xây dựng</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 text-slate-400 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 text-slate-400 border-r border-slate-200 text-center">
                     -
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-bd-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">DT thông thủy</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     {{ cp.areaUsable }} m²
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-du-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">DT tim tường</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     {{ cp.areaCarpet || (cp.areaUsable * 1.08).toFixed(2) }} m²
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-dc-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
@@ -1185,21 +1237,21 @@
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Ngân hàng</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     TCB / VPB / BIDV
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-b-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">CSBH áp dụng</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     CSBH hiện hành
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-cs-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Quà tặng</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 text-slate-400 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 text-slate-400 border-r border-slate-200 text-center">
                     -
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-g-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
@@ -1213,7 +1265,7 @@
                 </tr>
                 <tr class="border-b border-slate-200">
                   <td class="py-3 px-4 bg-slate-50 font-bold text-slate-600 border-r border-slate-200">Tiêu chuẩn bàn giao</td>
-                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200">
+                  <td v-for="cp in compareProducts" :key="cp.id" class="py-3 px-4 font-semibold text-slate-700 border-r border-slate-200 text-center">
                     Cao cấp
                   </td>
                   <td v-for="n in (5 - compareProducts.length)" :key="'empty-tb-' + n" class="bg-slate-50/30 border-r border-slate-200"></td>
@@ -2063,6 +2115,29 @@
       </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <transition
+      enter-active-class="transition ease-out duration-300 transform"
+      enter-from-class="opacity-0 translate-y-10 scale-95"
+      enter-to-class="opacity-100 translate-y-0 scale-100"
+      leave-active-class="transition ease-in duration-200 transform"
+      leave-from-class="opacity-100 translate-y-0 scale-100"
+      leave-to-class="opacity-0 translate-y-10 scale-95"
+    >
+      <button
+        v-show="showScrollToTop"
+        @click="scrollToTop"
+        :class="[
+          'fixed right-6 z-40 w-11 h-11 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 border border-emerald-500/30',
+          compareProducts.length > 0 && activeTab !== 'compare' ? 'bottom-24 sm:bottom-28' : 'bottom-6 sm:bottom-8'
+        ]"
+        title="Cuộn lên đầu trang"
+        aria-label="Cuộn lên đầu trang"
+      >
+        <i class="bi bi-arrow-up text-lg font-black"></i>
+      </button>
+    </transition>
+
   </div>
 
   <!-- Bọc dữ liệu nhúng tĩnh vào window object -->
@@ -2133,6 +2208,13 @@
         const isMobileDevice = ref(false);
         const showCompareSaveModal = ref(false);
         const compareSaveImageUrl = ref('');
+
+        // Chỉ số trượt cho các carousel tiện ích và thiết kế căn hộ
+        const activeUtilIndex = ref(0);
+        const activeProductIndex = ref(0);
+
+        // Nút cuộn lên đầu trang
+        const showScrollToTop = ref(false);
 
         const loadInventoryRealtime = () => {
           isLoadingInventory.value = true;
@@ -2340,10 +2422,14 @@
           // Chạy vòng lặp tính thời gian đếm ngược căn khóa
           updateCountdownTimers();
           timerInterval = setInterval(updateCountdownTimers, 1000);
+
+          // Lắng nghe sự kiện cuộn trang
+          window.addEventListener('scroll', handleScroll);
         });
 
         onUnmounted(() => {
           if (timerInterval) clearInterval(timerInterval);
+          window.removeEventListener('scroll', handleScroll);
         });
 
         // Điều khiển Image Slider của Tab Tổng Quan
@@ -2367,6 +2453,59 @@
             el.scrollBy({ left: amount, behavior: 'smooth' });
           }
         }
+
+        // Đồng bộ trạng thái trượt của carousel
+        function handleUtilScroll(e) {
+          const el = e.target;
+          const cardWidth = 272; // w-64 (256px) + gap-4 (16px)
+          const index = Math.round(el.scrollLeft / cardWidth);
+          activeUtilIndex.value = Math.max(0, Math.min(index, (project.value.utilities ? project.value.utilities.length : 1) - 1));
+        }
+
+        function handleProductScroll(e) {
+          const el = e.target;
+          const cardWidth = 344; // w-80 (320px) + gap-6 (24px)
+          const index = Math.round(el.scrollLeft / cardWidth);
+          activeProductIndex.value = Math.max(0, Math.min(index, (project.value.floorPlans ? project.value.floorPlans.length : 1) - 1));
+        }
+
+        function scrollUtilTo(idx) {
+          const el = document.getElementById('util-slider');
+          if (el) {
+            el.scrollTo({ left: idx * 272, behavior: 'smooth' });
+            activeUtilIndex.value = idx;
+          }
+        }
+
+        function scrollProductTo(idx) {
+          const el = document.getElementById('product-slider');
+          if (el) {
+            el.scrollTo({ left: idx * 344, behavior: 'smooth' });
+            activeProductIndex.value = idx;
+          }
+        }
+
+        const handleScroll = () => {
+          showScrollToTop.value = window.scrollY > 300;
+        };
+
+        const scrollToTop = () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        };
+
+        const isCheapest = (product, field) => {
+          if (!product || !product[field] || product[field] <= 0) return false;
+          if (compareProducts.value.length === 0) return false;
+          const validPrices = compareProducts.value
+            .map(p => p[field])
+            .filter(price => price && price > 0);
+          if (validPrices.length === 0) return false;
+          const minPrice = Math.min(...validPrices);
+          return product[field] === minPrice;
+        };
 
         // Nhấp vào phân khu ở Tab Tòa nhà sẽ chuyển hướng thẳng sang Tab Bảng hàng & chọn tòa nhà đó
         function goToTabAndSelectSub(tabId, subId) {
@@ -2764,7 +2903,17 @@
           downloadCompareImage,
           isMobileDevice,
           showCompareSaveModal,
-          compareSaveImageUrl
+          compareSaveImageUrl,
+          activeUtilIndex,
+          activeProductIndex,
+          handleUtilScroll,
+          handleProductScroll,
+          scrollUtilTo,
+          scrollProductTo,
+          showScrollToTop,
+          handleScroll,
+          scrollToTop,
+          isCheapest
         };
       }
     }).mount('#app');
