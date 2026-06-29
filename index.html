@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <!-- Performance: Preconnect to external domains -->
@@ -1891,6 +1894,15 @@
              <div v-else class="w-full bg-slate-200 text-slate-400 py-3.5 px-4 rounded-xl font-bold text-center flex items-center justify-center gap-2 text-xs uppercase cursor-not-allowed">
                ĐÃ BÁN / HẾT HÀNG
              </div>
+             
+             <!-- Nút Xem chi tiết căn hộ (dành cho PC và Tablet) -->
+             <button 
+               @click="showProductDetailsModal = true"
+               class="w-full mt-3 bg-white text-[#2F2D74] border-2 border-[#2F2D74] py-3 px-4 rounded-xl font-extrabold shadow-sm hover:bg-slate-50 transition-all text-center flex items-center justify-center gap-2 text-xs font-sans uppercase tracking-wider"
+             >
+               <i class="bi bi-info-circle-fill text-xs text-[#2F2D74]"></i>
+               Xem chi tiết căn hộ
+             </button>
           </div>
 
           <!-- Nếu ở các Tab khác hoặc chưa có căn hộ được chọn: Hiện Broker Card & Specs -->
@@ -3100,11 +3112,107 @@
 
     </div>
 
-    <!-- Nút cuộn lên đầu trang (Back to Top) -->
+    <!-- Nút Chat 24/7 phong cách Candy Button của VengeanceUI -->
+    <button 
+      @click="toggleChatBox"
+      class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full flex flex-col items-center justify-center text-center p-2 cursor-pointer transition-all duration-200 ease-out border border-[#54A1FD] bg-[radial-gradient(95%_60%_at_50%_75%,#005FD6_0%,#209BFF_100%)] shadow-[0px_4px_48px_-12px_#1187FF,inset_0px_1px_8px_-4px_#FFFFFF] active:scale-95 active:rotate-1 after:absolute after:top-[1px] after:right-[10%] after:w-[60%] after:h-[1px] after:bg-gradient-to-r after:from-transparent after:via-white/50 after:to-transparent hover:brightness-110 text-white outline-none select-none"
+      title="Chat hỗ trợ 24/7"
+    >
+      <i class="bi bi-chat-dots-fill text-lg leading-none"></i>
+      <span class="text-[9px] font-black uppercase tracking-wider leading-none mt-0.5">Chat 24/7</span>
+    </button>
+
+    <!-- Ô Chat 24/7 Pop-up -->
+    <transition name="lightbox-fade">
+      <div 
+        v-if="showChatBox" 
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[360px] bg-white rounded-2xl border border-slate-200 shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col max-h-[500px]"
+      >
+        <!-- Header -->
+        <div class="bg-[#1E1B4B] text-white px-4 py-3 flex justify-between items-center flex-shrink-0">
+          <div class="flex items-center gap-3">
+            <div class="relative w-9 h-9 rounded-full overflow-hidden bg-slate-200 border border-white/20">
+              <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-full h-full object-cover" alt="Huy Hưng BĐS">
+              <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border border-[#1E1B4B]"></span>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold font-label">Phùng Huy Hưng</h4>
+              <span class="text-[9px] text-slate-300 font-semibold flex items-center gap-1">
+                <span class="inline-block w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                Tư vấn trực tuyến 24/7
+              </span>
+            </div>
+          </div>
+          <button @click="showChatBox = false" class="text-white/70 hover:text-white transition-colors text-lg p-1">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <!-- Message Area -->
+        <div ref="chatContainer" class="flex-1 overflow-y-auto p-4 space-y-3.5 bg-slate-50/50 min-h-[280px] max-h-[320px]">
+          <!-- Messages -->
+          <div v-for="(msg, idx) in chatMessages" :key="idx" :class="['flex gap-2.5', msg.sender === 'user' ? 'justify-end' : 'justify-start']">
+            <div v-if="msg.sender === 'broker'" class="w-7 h-7 rounded-full overflow-hidden bg-slate-200 border border-slate-100 flex-shrink-0">
+              <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-full h-full object-cover">
+            </div>
+            <div :class="['max-w-[75%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed', msg.sender === 'user' ? 'bg-[#2F2D74] text-white rounded-tr-none font-medium' : 'bg-white text-slate-800 border border-slate-200/80 rounded-tl-none font-medium shadow-sm']">
+              <span v-html="formatMessageText(msg.text)"></span>
+              <span :class="['block text-[8px] mt-1 text-right', msg.sender === 'user' ? 'text-white/60' : 'text-slate-400']">{{ msg.time }}</span>
+            </div>
+          </div>
+
+          <!-- Typing Indicator -->
+          <div v-if="isBrokerTyping" class="flex gap-2.5 justify-start">
+            <div class="w-7 h-7 rounded-full overflow-hidden bg-slate-200 border border-slate-100 flex-shrink-0">
+              <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-full h-full object-cover">
+            </div>
+            <div class="bg-white border border-slate-200/80 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+              <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+              <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Reply Suggestion Chips -->
+        <div class="p-3 border-t border-slate-100 bg-white flex-shrink-0">
+          <div class="flex flex-wrap gap-1.5">
+            <button 
+              v-for="(chip, idx) in chatChips" 
+              :key="idx"
+              @click="handleChipClick(chip)"
+              class="text-[10px] font-bold text-[#2F2D74] bg-[#2F2D74]/5 border border-[#2F2D74]/10 hover:bg-[#2F2D74]/10 rounded-full py-1.5 px-3 transition-colors text-left"
+            >
+              {{ chip }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 border-t border-slate-100 bg-slate-50 flex items-center gap-2 flex-shrink-0">
+          <input 
+            type="text" 
+            v-model="chatInput" 
+            @keyup.enter="sendChatMessage" 
+            placeholder="Nhập tin nhắn..." 
+            class="flex-1 bg-white border border-slate-200 rounded-xl py-2 px-3.5 text-xs focus:outline-none focus:border-[#2F2D74] transition-colors"
+          >
+          <button 
+            @click="sendChatMessage" 
+            class="bg-[#2F2D74] hover:bg-[#1E1B4B] text-white w-8 h-8 rounded-xl flex items-center justify-center transition-colors flex-shrink-0"
+          >
+            <i class="bi bi-send-fill text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </transition>
+
+
+        <!-- Nút cuộn lên đầu trang (Back to Top) -->
     <button 
       @click="scrollToTop"
       :class="[
-        'fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#0C5A3E] hover:bg-[#094831] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(12,90,62,0.3)] border border-white/20 transition-all duration-300 hover:scale-110 active:scale-95 outline-none cursor-pointer',
+        'fixed bottom-26 right-6 z-50 w-12 h-12 rounded-full bg-[#0C5A3E] hover:bg-[#094831] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(12,90,62,0.3)] border border-white/20 transition-all duration-300 hover:scale-110 active:scale-95 outline-none cursor-pointer',
         showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
       ]"
       title="Lên đầu trang"
@@ -4178,6 +4286,123 @@
           });
         }
 
+        // ─── CHAT 24/7 VUE LOGIC ──────────────────────────────────────────────
+        const showChatBox = ref(false);
+        const chatInput = ref('');
+        const isBrokerTyping = ref(false);
+        const chatMessages = ref([]);
+        const chatChips = ref([
+          "Tư vấn bảng hàng & giá mới nhất",
+          "Tính phương án dòng tiền trả góp",
+          "Đặt lịch đi xem nhà mẫu",
+          "Nhắn qua Zalo trực tiếp"
+        ]);
+        const chatContainer = ref(null);
+
+        const initChatMessages = () => {
+          if (chatMessages.value.length === 0) {
+            const now = new Date();
+            const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            chatMessages.value = [
+              {
+                sender: 'broker',
+                text: 'Chào anh/chị! Em là Huy Hưng, đại diện tư vấn dự án Imperia Ocean City - The Parkland.',
+                time: timeStr
+              },
+              {
+                sender: 'broker',
+                text: 'Anh/chị đang tìm hiểu căn hộ mấy phòng ngủ hoặc cần tư vấn phương án tài chính nào ạ?',
+                time: timeStr
+              }
+            ];
+          }
+        };
+
+        const scrollChatToBottom = () => {
+          if (chatContainer.value) {
+            chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+          }
+        };
+
+        const toggleChatBox = () => {
+          showChatBox.value = !showChatBox.value;
+          if (showChatBox.value) {
+            initChatMessages();
+            setTimeout(scrollChatToBottom, 100);
+          }
+        };
+
+        const formatMessageText = (text) => {
+          return text;
+        };
+
+        const triggerBrokerResponse = (userText) => {
+          isBrokerTyping.value = true;
+          setTimeout(scrollChatToBottom, 50);
+          
+          setTimeout(() => {
+            isBrokerTyping.value = false;
+            const now = new Date();
+            const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            
+            let reply = '';
+            const textLower = userText.toLowerCase();
+            
+            if (textLower.includes('giá') || textLower.includes('bảng hàng') || textLower.includes('chính sách')) {
+              reply = 'Dạ anh/chị, bảng giá và chính sách bán hàng mới nhất của The Parkland đang được em cập nhật liên tục. Để nhận file PDF trực tiếp, anh/chị có thể kết bạn Zalo với em qua số <strong>0989.151.897</strong> hoặc click vào liên kết Zalo này nhé: <a href="https://zalo.me/0989151897" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-extrabold">zalo.me/0989151897</a>.';
+            } else if (textLower.includes('dòng tiền') || textLower.includes('trả góp') || textLower.includes('tài chính') || textLower.includes('vay')) {
+              reply = 'Dạ, phương án tính dòng tiền trả góp rất quan trọng khi mua Parkland. Em có thể lập bảng tính chi tiết tiến độ thanh toán và gói vay cho riêng căn hộ anh/chị chọn. Anh/chị vui lòng để lại Số điện thoại hoặc kết bạn nhanh qua Zalo <strong>0989.151.897</strong> để em gửi file Excel dòng tiền ạ!';
+            } else if (textLower.includes('lịch') || textLower.includes('nhà mẫu') || textLower.includes('xem')) {
+              reply = 'Dạ vâng! Nhà mẫu dự án Imperia Ocean City luôn mở cửa đón tiếp khách hàng. Anh/chị dự kiến đi xem vào ngày nào trong tuần ạ? Anh/chị nhắn em Số điện thoại hoặc liên hệ Hotline <strong>0989.151.897</strong> để em đăng ký thẻ cư dân vào tham quan nhé!';
+            } else if (textLower.includes('zalo') || textLower.includes('trực tiếp')) {
+              reply = 'Dạ anh/chị có thể chat trực tiếp với em qua Zalo bằng cách click vào link: <a href="https://zalo.me/0989151897" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-extrabold">zalo.me/0989151897</a> hoặc gọi Hotline: <strong>0989.151.897</strong> hỗ trợ 24/7 ạ!';
+            } else {
+              reply = 'Cảm ơn anh/chị đã quan tâm! Em đã nhận được thông tin. Để được tư vấn chi tiết và nhanh chóng nhất 24/7, anh/chị vui lòng liên hệ trực tiếp qua số Hotline/Zalo: <strong>0989.151.897</strong> hoặc để lại số điện thoại tại đây để em gọi lại tư vấn ngay ạ!';
+            }
+            
+            chatMessages.value.push({
+              sender: 'broker',
+              text: reply,
+              time: timeStr
+            });
+            
+            setTimeout(scrollChatToBottom, 50);
+          }, 1200);
+        };
+
+        const sendChatMessage = () => {
+          const text = chatInput.value.trim();
+          if (!text) return;
+          
+          const now = new Date();
+          const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+          
+          chatMessages.value.push({
+            sender: 'user',
+            text: text,
+            time: timeStr
+          });
+          
+          chatInput.value = '';
+          setTimeout(scrollChatToBottom, 50);
+          
+          triggerBrokerResponse(text);
+        };
+
+        const handleChipClick = (chipText) => {
+          const now = new Date();
+          const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+          
+          chatMessages.value.push({
+            sender: 'user',
+            text: chipText,
+            time: timeStr
+          });
+          
+          setTimeout(scrollChatToBottom, 50);
+          triggerBrokerResponse(chipText);
+        };
+
         return {
           project,
           subdivisions,
@@ -4289,7 +4514,17 @@
           zoomLightboxIn,
           zoomLightboxOut,
           activeBentoItem,
-          bentoItems
+          bentoItems,
+          showChatBox,
+          chatInput,
+          isBrokerTyping,
+          chatMessages,
+          chatChips,
+          chatContainer,
+          toggleChatBox,
+          sendChatMessage,
+          handleChipClick,
+          formatMessageText
         };
 
         // Hàm khởi tạo các hoạt cảnh GSAP (Marquee, Text Reveal, Split Pinning, Bento Card Slide-in)
@@ -4389,5 +4624,8 @@
 
 </body>
 </html>
+
+
+
 
 
