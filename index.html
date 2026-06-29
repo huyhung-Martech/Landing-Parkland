@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <!-- Performance: Preconnect to external domains -->
@@ -383,7 +384,33 @@
       transform: rotateY(180deg);
       z-index: 1;
     }
-  </style>
+  
+    /* Fix contrast for dark cards */
+    .card-dark-contrast {
+      color: #ffffff !important;
+    }
+    .card-dark-contrast .text-h2 {
+      color: #ffffff !important;
+    }
+    .card-dark-contrast .text-caption {
+      color: #94a3b8 !important; /* light slate-400 */
+    }
+    .card-dark-contrast .text-body {
+      color: #ffffff !important;
+    }
+    .card-dark-contrast .text-display {
+      color: #34d399 !important; /* light emerald-400 */
+    }
+    .card-dark-contrast .text-white {
+      color: #ffffff !important;
+    }
+    .card-dark-contrast .text-slate-300 {
+      color: #cbd5e1 !important; /* light slate-300 */
+    }
+    .card-dark-contrast .text-\[\#38BDF8\] {
+      color: #38bdf8 !important; /* light sky-400 */
+    }
+</style>
 </head>
 <body class="font-sans">
 
@@ -1639,7 +1666,7 @@
               </div>
 
               <!-- Right: Flow Analysis Table -->
-              <div class="bg-[#1E1B4B] text-white p-6 rounded-2xl border border-slate-800 shadow-xl flex flex-col justify-between">
+              <div class="bg-[#1E1B4B] text-white p-6 rounded-2xl border border-slate-800 shadow-xl flex flex-col justify-between card-dark-contrast">
                 <div class="space-y-6">
                   <h4 class="text-h2 text-white flex items-center gap-2 border-b border-white/10 pb-3 font-label uppercase">
                     <i class="bi bi-bar-chart-fill text-emerald-400"></i> Bảng Phân Tích Dòng Tiền Trả Góp
@@ -4362,4 +4389,5 @@
 
 </body>
 </html>
+
 
