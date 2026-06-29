@@ -5,3 +5,10 @@ Desktop.ini
 *.log
 
 .vercel
+
+tailwind.min.css
+tailwind.config.js
+tw-input.css
+package.json
+package-lock.json
+node_modules/
