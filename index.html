@@ -4,6 +4,29 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <!-- Performance: Preconnect to external domains -->
@@ -15,7 +38,7 @@
   <meta charset="UTF-8">
     <meta name="description" content="Imperia Ocean City - The Parkland | Tổ hợp căn hộ cao tầng tại Vinhomes Ocean Park 2, Văn Giang, Hưng Yên. Xem bảng hàng, so sánh căn hộ và tư vấn đầu tư.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Imperia Ocean City - The Parkland | Huy Hưng BĐS</title>
+  <title>Imperia Ocean City - The Parkland | Khánh Huyền BĐS</title>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" />
   
@@ -410,8 +433,453 @@
     .card-dark-contrast .text-slate-300 {
       color: #cbd5e1 !important; /* light slate-300 */
     }
-    .card-dark-contrast .text-\[\#38BDF8\] {
-      color: #38bdf8 !important; /* light sky-400 */
+    
+    /* Style for Gàn AI Chat Widget (Resilient Version) */
+    .gan-chat-fab {
+      height: 56px;
+      width: 56px;
+      border-radius: 9999px;
+      background: #186ffd;
+      box-shadow: 0 4px 24px rgba(24, 111, 253, 0.3);
+      border: 1px solid #ffffff;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: fixed;
+      bottom: 84px;
+      right: 24px;
+      z-index: 9999;
+      user-select: none;
+      outline: none;
+    }
+    
+    .gan-chat-fab:hover {
+      width: 195px;
+      box-shadow: 0 8px 30px rgba(24, 111, 253, 0.45);
+      transform: translateY(-2px);
+    }
+    
+    .gan-chat-fab-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 3px solid #0091ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 3px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .gan-chat-fab-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(1.1) translateY(3px);
+    }
+    
+    .gan-chat-fab-text {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      padding-left: 8px;
+      padding-right: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      font-family: inherit;
+    }
+    
+    .gan-chat-fab:hover .gan-chat-fab-text {
+      opacity: 1;
+      max-width: 130px;
+    }
+
+    /* Gàn AI Chat Box popup container */
+    .gan-chat-box {
+      position: fixed;
+      bottom: 84px;
+      right: 24px;
+      z-index: 9999;
+      width: 380px;
+      height: 550px;
+      max-height: calc(100vh - 100px);
+      background-color: #ebf4fa;
+      border-radius: 28px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: inherit;
+    }
+
+    @media (max-width: 640px) {
+      .gan-chat-box {
+        right: 16px;
+        left: 16px;
+        width: auto;
+        bottom: 16px;
+        height: 500px;
+      }
+    }
+
+    /* Header capsule container */
+    .gan-chat-header-container {
+      padding: 12px;
+      padding-bottom: 4px;
+      flex-shrink: 0;
+    }
+    
+    .gan-chat-header {
+      background: linear-gradient(90deg, #186ffd 0%, #2563eb 100%);
+      border-radius: 9999px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(24, 111, 253, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .gan-chat-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .gan-chat-header-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      background-color: #ffffff;
+      border: 2px solid #a0cfff;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .gan-chat-header-avatar img {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+      transform: scale(1.1) translateY(2px);
+    }
+    
+    .gan-chat-header-info {
+      line-height: 1.2;
+    }
+    
+    .gan-chat-header-title {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      margin: 0;
+    }
+    
+    .gan-chat-header-status {
+      font-size: 9px;
+      color: #dbeafe;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    
+    .gan-chat-header-status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: #42f59e;
+      border-radius: 9999px;
+      box-shadow: 0 0 6px #42f59e;
+    }
+    
+    .gan-chat-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .gan-chat-header-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      font-size: 11px;
+      outline: none;
+    }
+    
+    .gan-chat-header-btn:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Message Area styling */
+    .gan-chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 200px;
+    }
+    
+    .gan-chat-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .gan-chat-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .gan-chat-body::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    .gan-chat-body::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .gan-chat-msg-row {
+      display: flex;
+      width: 100%;
+    }
+    
+    .gan-chat-msg-row.user {
+      justify-content: flex-end;
+    }
+    
+    .gan-chat-msg-row.bot {
+      justify-content: flex-start;
+    }
+    
+    .gan-chat-bubble {
+      max-width: 80%;
+      border-radius: 20px;
+      padding: 12px 16px;
+      font-size: 12px;
+      line-height: 1.5;
+      font-family: inherit;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+    
+    .gan-chat-bubble.user {
+      background-color: #186ffd;
+      color: #ffffff;
+      border-top-right-radius: 0;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(24, 111, 253, 0.15);
+    }
+    
+    .gan-chat-bubble.bot {
+      background-color: #ffffff;
+      color: #1e293b;
+      border-top-left-radius: 0;
+      font-weight: 600;
+      border: 1px solid #ffffff;
+    }
+    
+    .gan-chat-msg-time {
+      display: block;
+      font-size: 9px;
+      margin-top: 6px;
+      text-align: right;
+      font-weight: 500;
+    }
+    
+    .gan-chat-bubble.user .gan-chat-msg-time {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .gan-chat-bubble.bot .gan-chat-msg-time {
+      color: #94a3b8;
+    }
+    
+    .gan-chat-typing {
+      background-color: #ffffff;
+      border-radius: 20px;
+      border-top-left-radius: 0;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      align-self: flex-start;
+      border: 1px solid #ffffff;
+    }
+    
+    .gan-chat-typing-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #94a3b8;
+      border-radius: 9999px;
+      animation: gan-bounce 1.4s infinite ease-in-out both;
+    }
+    
+    .gan-chat-typing-dot:nth-child(1) { animation-delay: 0s; }
+    .gan-chat-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+    .gan-chat-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+    
+    @keyframes gan-bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1.0); }
+    }
+
+    /* Suggestion Chips styling */
+    .gan-chat-chips-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: 16px;
+      width: 100%;
+    }
+    
+    .gan-chat-chip {
+      max-width: 88%;
+      background-color: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.6);
+      border-radius: 9999px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      outline: none;
+      text-align: left;
+    }
+    
+    .gan-chat-chip:hover {
+      background-color: #f8fafc;
+      transform: translateX(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+    
+    .gan-chat-chip i {
+      color: #94a3b8;
+      font-size: 10px;
+    }
+
+    /* Bottom Area styling */
+    .gan-chat-bottom {
+      padding: 12px;
+      padding-top: 8px;
+      background-color: #f8fafc;
+      border-top: 1px solid rgba(226, 232, 240, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    
+    .gan-chat-input-row {
+      background-color: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 9999px;
+      padding: 4px;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+    
+    .gan-chat-input-row:focus-within {
+      border-color: #93c5fd;
+    }
+    
+    .gan-chat-upload-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      background-color: #f1f5f9;
+      border: none;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      outline: none;
+    }
+    
+    .gan-chat-upload-btn:hover {
+      background-color: #e2e8f0;
+    }
+    
+    .gan-chat-input {
+      flex: 1;
+      background-color: transparent;
+      border: none;
+      padding: 6px 2px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e293b;
+      outline: none;
+    }
+    
+    .gan-chat-input::placeholder {
+      color: #94a3b8;
+    }
+    
+    .gan-chat-send-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      background-color: #186ffd;
+      border: none;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      box-shadow: 0 4px 10px rgba(24, 111, 253, 0.2);
+      outline: none;
+    }
+    
+    .gan-chat-send-btn:hover {
+      background-color: #2563eb;
+    }
+    
+    .gan-chat-footer {
+      font-size: 10px;
+      color: #94a3b8;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      user-select: none;
+      padding-top: 2px;
+      padding-bottom: 4px;
     }
 </style>
 </head>
@@ -466,9 +934,9 @@
 
       <!-- Bottom Actions Footer -->
       <div class="p-4 border-t border-slate-100 bg-slate-50/50 shrink-0">
-        <a href="tel:0989151897" class="w-full py-2.5 bg-slate-900 text-white rounded-xl font-sans text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm animated-shine-btn">
+        <a href="tel:0926066888" class="w-full py-2.5 bg-slate-900 text-white rounded-xl font-sans text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm animated-shine-btn">
           <i class="bi bi-telephone-fill text-xs text-[#FFD5AE]"></i>
-          Hotline: 0989.151.897
+          Hotline: 0926.066.888
         </a>
       </div>
     </nav>
@@ -514,11 +982,11 @@
 
         <!-- Right Area: Icons and User Login -->
         <div class="flex items-center gap-3">
-          <button class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-500 hover:text-[#2F2D74] hover:bg-slate-50 transition-colors relative outline-none" title="Tin nhắn">
+          <button class="w-9 h-9 rounded-xl hidden items-center justify-center text-slate-500 hover:text-[#2F2D74] hover:bg-slate-50 transition-colors relative outline-none" title="Tin nhắn">
             <i class="bi bi-chat-left-text text-sm"></i>
           </button>
           
-          <button class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-500 hover:text-[#2F2D74] hover:bg-slate-50 transition-colors relative outline-none" title="Thông báo">
+          <button class="w-9 h-9 rounded-xl hidden items-center justify-center text-slate-500 hover:text-[#2F2D74] hover:bg-slate-50 transition-colors relative outline-none" title="Thông báo">
             <i class="bi bi-bell text-sm"></i>
             <span class="absolute -top-0.5 -right-0.5 bg-red-500 text-[8px] font-sans font-black text-white px-1 py-0.5 rounded-full shadow-md scale-90 border border-white">
               9+
@@ -526,7 +994,7 @@
           </button>
 
           <a 
-            href="tel:0989151897" 
+            href="tel:0926066888" 
             class="relative text-white font-sans text-xs font-black tracking-[0.02em] hidden md:inline-flex px-5 py-2.5 rounded-xl cursor-pointer border border-[#3F3D8C]/80 bg-[radial-gradient(95%_60%_at_50%_75%,#2F2D74_0%,#4F46E5_100%)] shadow-[0px_4px_24px_-8px_#2F2D74,inset_0px_1px_8px_-4px_#FFFFFF] after:absolute after:top-[1px] after:right-[10%] after:w-[60%] after:h-[1px] after:bg-gradient-to-r after:from-transparent after:via-white/40 after:to-transparent animated-shine-btn"
           >
             Liên hệ đại lý
@@ -536,7 +1004,7 @@
             <img :src="user.avatarUrl" class="w-8 h-8 rounded-full border border-slate-200 shadow-inner" alt="Avatar">
             <button @click="logout" class="text-xs text-red-500 font-semibold hover:underline">Thoát</button>
           </div>
-          <button v-else @click="showLoginModal = true" class="flex items-center gap-2 bg-[#2F2D74] hover:bg-[#1E1B4B] text-white px-3 py-1.5 rounded-xl text-xs font-extrabold shadow-sm hover-premium transition-all">
+          <button v-else @click="showLoginModal = true" class="hidden items-center gap-2 bg-[#2F2D74] hover:bg-[#1E1B4B] text-white px-3 py-1.5 rounded-xl text-xs font-extrabold shadow-sm hover-premium transition-all">
             Đăng nhập
           </button>
         </div>
@@ -1485,7 +1953,7 @@
                       <td class="py-4 px-4 font-bold text-slate-800">{{ item.code }}</td>
                       <td class="py-4 px-4 font-medium text-slate-500">{{ getSubdivisionName(item.subdivisionId) }}</td>
                       <td class="py-4 px-4 font-bold text-slate-800">{{ formatPrice(item.price) }}</td>
-                      <td class="py-4 px-4 font-medium text-amber-600">{{ item.lockedBy || 'Huy Hưng (Đại lý)' }}</td>
+                      <td class="py-4 px-4 font-medium text-amber-600">{{ item.lockedBy || 'Khánh Huyền (Đại lý)' }}</td>
                       <td class="py-4 px-4">
                         <span class="text-xs font-bold bg-amber-500 text-white py-1 px-2.5 rounded-lg animate-pulse inline-flex items-center gap-1">
                           <i class="bi bi-clock-fill"></i>
@@ -1706,7 +2174,7 @@
                 </div>
 
                 <div class="mt-8 pt-4 border-t border-white/10 text-xs text-slate-400 leading-relaxed italic">
-                  * Bảng tính mang tính chất tham khảo thực tế dựa trên dư nợ giảm dần. Để có phương án chính xác nhất kèm chính sách đặc quyền, vui lòng liên hệ trực tiếp Huy Hưng BĐS.
+                  * Bảng tính mang tính chất tham khảo thực tế dựa trên dư nợ giảm dần. Để có phương án chính xác nhất kèm chính sách đặc quyền, vui lòng liên hệ trực tiếp Khánh Huyền BĐS.
                 </div>
               </div>
             </div>
@@ -1912,25 +2380,25 @@
               <div class="w-20 h-20 rounded-full overflow-hidden mx-auto border-2 border-[#FFD5AE] shadow-md bg-slate-50">
                 <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-full h-full object-cover" alt="Broker" loading="lazy">
               </div>
-              <h4 class="font-extrabold text-slate-800 text-base mt-4 font-label">Phùng Huy Hưng</h4>
-              <p class="text-[9px] font-extrabold text-[#2F2D74] bg-[#FFD5AE]/30 border border-[#FFD5AE]/60 rounded-full py-0.5 px-3 inline-block uppercase tracking-widest mt-1.5 font-label">Chuyên viên Bất Động Sản</p>
+              <h4 class="font-extrabold text-slate-800 text-base mt-4 font-label">Khánh Huyền</h4>
+              <p class="text-[9px] font-extrabold text-[#2F2D74] bg-[#FFD5AE]/30 border border-[#FFD5AE]/60 rounded-full py-0.5 px-3 inline-block uppercase tracking-widest mt-1.5 font-label">Admin Dự Án</p>
               
-              <div class="border-t border-slate-100 mt-5 pt-4 flex flex-col gap-3 text-xs text-left">
-                <a href="tel:0989151897" class="flex items-center gap-2.5 text-slate-600 hover:text-primary transition-colors font-bold">
+              <div class="border-t border-slate-100 mt-5 pt-4 flex flex-col gap-5 text-sm text-left">
+                <a href="tel:0926066888" class="flex items-center gap-2.5 text-slate-600 hover:text-primary transition-colors font-bold">
                   <i class="bi bi-telephone-fill text-primary text-sm"></i>
-                  0989.151.897
+                  0926.066.888
                 </a>
-                <a href="mailto:huyhung.utehy@gmail.com" class="flex items-center gap-2.5 text-slate-600 hover:text-primary transition-colors font-bold">
+                <a href="mailto:khanhhuyen.queenland@gmail.com" class="flex items-center gap-2.5 text-slate-600 hover:text-primary transition-colors font-bold">
                   <i class="bi bi-envelope-fill text-primary text-sm"></i>
-                  huyhung.utehy@gmail.com
+                  khanhhuyen.queenland@gmail.com
                 </a>
                 <span class="flex items-center gap-2.5 text-slate-600 font-bold">
                   <i class="bi bi-award-fill text-primary text-sm"></i>
-                  Thương hiệu: Hưng Land
+                  Thương hiệu: QueenLand
                 </span>
               </div>
               <a 
-                href="tel:0989151897"
+                href="tel:0926066888"
                 class="relative w-full text-white font-sans text-xs font-black tracking-[0.05em] py-3.5 px-4 rounded-xl cursor-pointer border border-[#3F3D8C]/80 bg-[radial-gradient(95%_60%_at_50%_75%,#2F2D74_0%,#4F46E5_100%)] shadow-[0px_4px_24px_-8px_#2F2D74,inset_0px_1px_8px_-4px_#FFFFFF] after:absolute after:top-[1px] after:right-[10%] after:w-[60%] after:h-[1px] after:bg-gradient-to-r after:from-transparent after:via-white/40 after:to-transparent text-center flex items-center justify-center gap-2 mt-6 uppercase animated-shine-btn"
               >
                 <i class="bi bi-telephone-outbound-fill text-[#FFD5AE]"></i>
@@ -2040,7 +2508,7 @@
                       
                       <!-- Floor Plan / Apartment Image -->
                       <div class="h-36 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center p-2 relative group overflow-hidden shadow-inner">
-                        <img :src="getApartmentImage(cp.code, cp.type)" class="max-h-full max-w-full object-contain rounded" loading="lazy">
+                        <img :src="getApartmentImage(cp.code, cp.type)" class="max-h-full max-w-full object-contain rounded" :crossorigin="isOnline ? 'anonymous' : null" loading="lazy">
                         <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-1.5 transition-all duration-200">
                           <button @click="openImage(getApartmentImage(cp.code, cp.type))" class="w-8 h-8 rounded-full bg-slate-800 shadow text-white flex items-center justify-center hover:bg-slate-700 transition-all hover:scale-105" title="Phóng to">
                             <i class="bi bi-fullscreen text-xs"></i>
@@ -2359,7 +2827,7 @@
               <button @click="shareProject" class="flex items-center justify-center gap-1.5 py-2.5 px-3 border border-slate-200 hover:bg-slate-50 text-slate-600 font-extrabold text-[11px] rounded-lg transition-colors">
                 <i class="bi bi-share text-sm"></i> Chia sẻ
               </button>
-              <a href="https://zalo.me/0989151897" target="_blank" class="flex items-center justify-center gap-1.5 py-2.5 px-3 border border-blue-200 bg-blue-50/40 hover:bg-blue-50 text-blue-600 font-extrabold text-[11px] rounded-lg transition-colors">
+              <a href="https://zalo.me/0926066888" target="_blank" class="flex items-center justify-center gap-1.5 py-2.5 px-3 border border-blue-200 bg-blue-50/40 hover:bg-blue-50 text-blue-600 font-extrabold text-[11px] rounded-lg transition-colors">
                 <i class="bi bi-chat-dots text-sm"></i> Hỏi đáp
               </a>
             </div>
@@ -2475,17 +2943,17 @@
                   <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-inner" alt="Broker" loading="lazy">
                   <div>
                     <div class="flex items-center gap-1">
-                      <span class="text-xs font-black text-slate-800">Phùng Huy Hưng</span>
+                      <span class="text-xs font-black text-slate-800">Khánh Huyền</span>
                       <span class="text-[9px] text-slate-400 font-medium">(Quản lý)</span>
                     </div>
                     <span class="block text-[9px] text-slate-400 -mt-0.5">Tư vấn viên</span>
                   </div>
                 </div>
                 <div class="flex gap-1.5">
-                  <a href="tel:0989151897" class="h-8 px-2.5 rounded-lg bg-[#22c55e] text-white flex items-center justify-center gap-1 font-bold text-[10px] hover:bg-[#16a34a] transition-all shadow-sm">
+                  <a href="tel:0926066888" class="h-8 px-2.5 rounded-lg bg-[#22c55e] text-white flex items-center justify-center gap-1 font-bold text-[10px] hover:bg-[#16a34a] transition-all shadow-sm">
                     <i class="bi bi-telephone-fill"></i> Gọi
                   </a>
-                  <a href="https://zalo.me/0989151897" target="_blank" class="h-8 px-2.5 rounded-lg bg-[#0068ff] text-white flex items-center justify-center gap-1 font-bold text-[10px] hover:bg-[#0052cc] transition-all shadow-sm">
+                  <a href="https://zalo.me/0926066888" target="_blank" class="h-8 px-2.5 rounded-lg bg-[#0068ff] text-white flex items-center justify-center gap-1 font-bold text-[10px] hover:bg-[#0052cc] transition-all shadow-sm">
                     <i class="bi bi-chat-text-fill"></i> Zalo
                   </a>
                 </div>
@@ -2496,7 +2964,7 @@
             <!-- Nút tương tác CHECK CĂN / LOCK CĂN ở dưới cùng (giống ảnh mẫu) -->
             <div class="grid grid-cols-2 gap-3 mt-4 pt-3 border-t border-slate-100 flex-shrink-0">
               <a 
-                href="https://zalo.me/0989151897" 
+                href="https://zalo.me/0926066888" 
                 target="_blank"
                 class="bg-[#0b2545] hover:bg-[#13315c] text-white font-extrabold text-[12px] py-2.5 px-4 rounded-lg shadow-sm text-center flex items-center justify-center gap-2 tracking-wider transition-all"
               >
@@ -2804,7 +3272,7 @@
         <!-- Footer Buttons -->
         <div class="bg-slate-100 border-t border-slate-200 px-6 py-4 flex justify-between items-center flex-shrink-0">
           <a 
-            href="https://zalo.me/0989151897" 
+            href="https://zalo.me/0926066888" 
             target="_blank" 
             class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs px-5 py-2.5 rounded-lg flex items-center gap-1.5 shadow-sm transition-all"
           >
@@ -2974,7 +3442,7 @@
               Đóng lại
             </button>
             <a 
-              href="tel:0989151897"
+              href="tel:0926066888"
               class="bg-primary hover:bg-[#1E1B4B] text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 shadow-md shadow-[#2F2D74]/10"
             >
               <i class="bi bi-telephone-fill"></i> Gọi tư vấn chi tiết
@@ -3048,7 +3516,7 @@
               <input 
                 v-model="loginPhone" 
                 type="text" 
-                placeholder="Nhập số điện thoại (Ví dụ: 0989151897)" 
+                placeholder="Nhập số điện thoại (Ví dụ: 0926066888)" 
                 class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary focus:bg-white transition-colors"
                 @keyup.enter="handleLoginSubmit"
               />
@@ -3073,12 +3541,12 @@
     <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h3 class="text-white font-bold text-lg mb-4">Huy Hưng BĐS</h3>
+          <h3 class="text-white font-bold text-lg mb-4">Khánh Huyền BĐS</h3>
           <p class="text-sm leading-relaxed mb-4">
             Nền tảng hỗ trợ đại lý và khách hàng tiếp cận trực tuyến quỹ căn hộ cao cấp Imperia Ocean City - The Parkland nhanh chóng, minh bạch và chuyên nghiệp.
           </p>
           <span class="text-xs text-slate-500 block">
-            Bản quyền ©2026 thuộc về Huy Hưng BĐS.
+            Bản quyền thuộc về Digital Marketing 03.
           </span>
         </div>
         <div>
@@ -3095,15 +3563,15 @@
           <ul class="space-y-3 text-sm">
             <li class="flex items-center gap-2">
               <i class="bi bi-geo-alt-fill text-accent"></i>
-              <span>Trung tâm giao dịch BĐS Hưng Land, Hà Nội</span>
+              <span>Trung tâm giao dịch BĐS QueenLand, Hà Nội</span>
             </li>
             <li class="flex items-center gap-2">
               <i class="bi bi-envelope-fill text-accent"></i>
-              <a href="mailto:huyhung.utehy@gmail.com" class="hover:text-white">huyhung.utehy@gmail.com</a>
+              <a href="mailto:khanhhuyen.queenland@gmail.com" class="hover:text-white">khanhhuyen.queenland@gmail.com</a>
             </li>
             <li class="flex items-center gap-2">
               <i class="bi bi-telephone-fill text-accent"></i>
-              <span>Hotline: 0989151897 (Hỗ trợ 24/7)</span>
+              <span>Hotline: 0926066888 (Hỗ trợ 24/7)</span>
             </li>
           </ul>
         </div>
@@ -3113,109 +3581,141 @@
     </div>
 
     <!-- Nút Chat 24/7 phong cách Candy Button của VengeanceUI -->
+    <!-- Nút Chat 24/7 (Gàn AI Style) -->
     <button 
       @click="toggleChatBox"
-      class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full flex flex-col items-center justify-center text-center p-2 cursor-pointer transition-all duration-200 ease-out border border-[#54A1FD] bg-[radial-gradient(95%_60%_at_50%_75%,#005FD6_0%,#209BFF_100%)] shadow-[0px_4px_48px_-12px_#1187FF,inset_0px_1px_8px_-4px_#FFFFFF] active:scale-95 active:rotate-1 after:absolute after:top-[1px] after:right-[10%] after:w-[60%] after:h-[1px] after:bg-gradient-to-r after:from-transparent after:via-white/50 after:to-transparent hover:brightness-110 text-white outline-none select-none"
+      class="gan-chat-fab"
+      :class="showChatBox ? 'opacity-0 pointer-events-none' : 'opacity-100'"
       title="Chat hỗ trợ 24/7"
     >
-      <i class="bi bi-chat-dots-fill text-lg leading-none"></i>
-      <span class="text-[9px] font-black uppercase tracking-wider leading-none mt-0.5">Chat 24/7</span>
+      <div class="gan-chat-fab-avatar">
+        <img src="images/gantalk.png" alt="Gàn AI Mascot">
+      </div>
+      <span class="gan-chat-fab-text">Chat hỗ trợ 24/7</span>
     </button>
 
-    <!-- Ô Chat 24/7 Pop-up -->
+    <!-- Ô Chat 24/7 Pop-up (Gàn AI Style - Resilient HTML) -->
     <transition name="lightbox-fade">
-      <div 
-        v-if="showChatBox" 
-        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[360px] bg-white rounded-2xl border border-slate-200 shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col max-h-[500px]"
-      >
+      <div v-if="showChatBox" class="gan-chat-box">
         <!-- Header -->
-        <div class="bg-[#1E1B4B] text-white px-4 py-3 flex justify-between items-center flex-shrink-0">
-          <div class="flex items-center gap-3">
-            <div class="relative w-9 h-9 rounded-full overflow-hidden bg-slate-200 border border-white/20">
-              <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-full h-full object-cover" alt="Huy Hưng BĐS">
-              <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border border-[#1E1B4B]"></span>
+        <div class="gan-chat-header-container">
+          <div class="gan-chat-header">
+            <div class="gan-chat-header-left">
+              <div class="gan-chat-header-avatar">
+                <img src="images/gantalk.png" alt="Gàn AI">
+              </div>
+              <div class="gan-chat-header-info">
+                <h4 class="gan-chat-header-title">ADMIN Queenland</h4>
+                <span class="gan-chat-header-status">
+                  <span class="gan-chat-header-status-dot"></span>
+                  Trực tuyến
+                </span>
+              </div>
             </div>
-            <div>
-              <h4 class="text-xs font-bold font-label">Phùng Huy Hưng</h4>
-              <span class="text-[9px] text-slate-300 font-semibold flex items-center gap-1">
-                <span class="inline-block w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                Tư vấn trực tuyến 24/7
-              </span>
+            
+            <!-- Utility Buttons -->
+            <div class="gan-chat-header-actions">
+              <button class="gan-chat-header-btn" title="Thông tin">
+                <i class="bi bi-lightbulb-fill"></i>
+              </button>
+              <button class="gan-chat-header-btn" title="Giỏ hàng">
+                <i class="bi bi-cart-fill"></i>
+              </button>
+              <button class="gan-chat-header-btn" title="Đánh giá">
+                <i class="bi bi-star-fill" style="font-size: 9px;"></i>
+              </button>
+              <button class="gan-chat-header-btn" title="Phóng to">
+                <i class="bi bi-arrows-angle-expand" style="font-size: 8px;"></i>
+              </button>
+              <button @click="chatMessages = []; initChatMessages();" class="gan-chat-header-btn" title="Tải lại">
+                <i class="bi bi-arrow-clockwise"></i>
+              </button>
+              <button @click="showChatBox = false" class="gan-chat-header-btn" title="Đóng">
+                <i class="bi bi-x-lg" style="font-size: 9px;"></i>
+              </button>
             </div>
           </div>
-          <button @click="showChatBox = false" class="text-white/70 hover:text-white transition-colors text-lg p-1">
-            <i class="bi bi-x-lg"></i>
-          </button>
         </div>
 
         <!-- Message Area -->
-        <div ref="chatContainer" class="flex-1 overflow-y-auto p-4 space-y-3.5 bg-slate-50/50 min-h-[280px] max-h-[320px]">
+        <div ref="chatContainer" class="gan-chat-body">
           <!-- Messages -->
-          <div v-for="(msg, idx) in chatMessages" :key="idx" :class="['flex gap-2.5', msg.sender === 'user' ? 'justify-end' : 'justify-start']">
-            <div v-if="msg.sender === 'broker'" class="w-7 h-7 rounded-full overflow-hidden bg-slate-200 border border-slate-100 flex-shrink-0">
-              <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-full h-full object-cover">
-            </div>
-            <div :class="['max-w-[75%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed', msg.sender === 'user' ? 'bg-[#2F2D74] text-white rounded-tr-none font-medium' : 'bg-white text-slate-800 border border-slate-200/80 rounded-tl-none font-medium shadow-sm']">
+          <div 
+            v-for="(msg, idx) in chatMessages" 
+            :key="idx" 
+            :class="['gan-chat-msg-row', msg.sender === 'user' ? 'user' : 'bot']"
+          >
+            <div :class="['gan-chat-bubble', msg.sender === 'user' ? 'user' : 'bot']">
               <span v-html="formatMessageText(msg.text)"></span>
-              <span :class="['block text-[8px] mt-1 text-right', msg.sender === 'user' ? 'text-white/60' : 'text-slate-400']">{{ msg.time }}</span>
+              <span class="gan-chat-msg-time">{{ msg.time }}</span>
             </div>
           </div>
 
           <!-- Typing Indicator -->
-          <div v-if="isBrokerTyping" class="flex gap-2.5 justify-start">
-            <div class="w-7 h-7 rounded-full overflow-hidden bg-slate-200 border border-slate-100 flex-shrink-0">
-              <img src="https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0" class="w-full h-full object-cover">
-            </div>
-            <div class="bg-white border border-slate-200/80 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
-              <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
-              <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+          <div v-if="isBrokerTyping" class="gan-chat-msg-row bot">
+            <div class="gan-chat-typing">
+              <span class="gan-chat-typing-dot"></span>
+              <span class="gan-chat-typing-dot"></span>
+              <span class="gan-chat-typing-dot"></span>
             </div>
           </div>
-        </div>
 
-        <!-- Quick Reply Suggestion Chips -->
-        <div class="p-3 border-t border-slate-100 bg-white flex-shrink-0">
-          <div class="flex flex-wrap gap-1.5">
+          <!-- Suggestion Chips inside Message Area -->
+          <div v-if="chatMessages.length <= 1" class="gan-chat-chips-container">
             <button 
               v-for="(chip, idx) in chatChips" 
-              :key="idx"
+              :key="'chip-'+idx"
               @click="handleChipClick(chip)"
-              class="text-[10px] font-bold text-[#2F2D74] bg-[#2F2D74]/5 border border-[#2F2D74]/10 hover:bg-[#2F2D74]/10 rounded-full py-1.5 px-3 transition-colors text-left"
+              class="gan-chat-chip"
             >
-              {{ chip }}
+              <span>{{ chip }}</span>
+              <i class="bi bi-arrow-right"></i>
             </button>
           </div>
         </div>
 
         <!-- Input Area -->
-        <div class="p-3 border-t border-slate-100 bg-slate-50 flex items-center gap-2 flex-shrink-0">
-          <input 
-            type="text" 
-            v-model="chatInput" 
-            @keyup.enter="sendChatMessage" 
-            placeholder="Nhập tin nhắn..." 
-            class="flex-1 bg-white border border-slate-200 rounded-xl py-2 px-3.5 text-xs focus:outline-none focus:border-[#2F2D74] transition-colors"
-          >
-          <button 
-            @click="sendChatMessage" 
-            class="bg-[#2F2D74] hover:bg-[#1E1B4B] text-white w-8 h-8 rounded-xl flex items-center justify-center transition-colors flex-shrink-0"
-          >
-            <i class="bi bi-send-fill text-xs"></i>
-          </button>
+        <div class="gan-chat-bottom">
+          <div class="gan-chat-input-row">
+            <!-- Upload Icon Button -->
+            <button class="gan-chat-upload-btn">
+              <i class="bi bi-image"></i>
+            </button>
+            
+            <!-- TextInput -->
+            <input 
+              type="text" 
+              v-model="chatInput" 
+              @keyup.enter="sendChatMessage" 
+              placeholder="Nhấn Shift + Enter để xuống dòng" 
+              class="gan-chat-input"
+            >
+            
+            <!-- Send Button -->
+            <button @click="sendChatMessage" class="gan-chat-send-btn">
+              <i class="bi bi-arrow-up-short" style="font-size: 18px; font-weight: 900;"></i>
+            </button>
+          </div>
+
+          <!-- SALEHUB Branding Footer -->
+          <div class="gan-chat-footer">
+            <span>Giải pháp Hỗ Trợ Bán Hàng Tự Động 24/7 của</span>
+            <span style="font-weight: 900; color: #00c5a3; letter-spacing: 0.05em;">
+              SALE<span style="color: #186ffd;">HUB</span>
+            </span>
+          </div>
         </div>
       </div>
     </transition>
 
-
-        <!-- Nút cuộn lên đầu trang (Back to Top) -->
+    <!-- Nút cuộn lên đầu trang (Back to Top) -->
     <button 
       @click="scrollToTop"
       :class="[
-        'fixed bottom-26 right-6 z-50 w-12 h-12 rounded-full bg-[#0C5A3E] hover:bg-[#094831] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(12,90,62,0.3)] border border-white/20 transition-all duration-300 hover:scale-110 active:scale-95 outline-none cursor-pointer',
+        'fixed right-6 z-50 w-12 h-12 rounded-full bg-[#0C5A3E] hover:bg-[#094831] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(12,90,62,0.3)] border border-white/20 transition-all duration-300 hover:scale-110 active:scale-95 outline-none cursor-pointer',
         showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
       ]"
-      title="Lên đầu trang"
+      title="Lên đầu trang" style="bottom: 24px;"
     >
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-5 h-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
@@ -3683,7 +4183,7 @@
               }
               
               // Đồng bộ trạng thái khóa local từ localStorage
-              const savedProducts = localStorage.getItem('huyhung_standalone_products');
+              const savedProducts = localStorage.getItem('khanhhuyen_standalone_products');
               if (savedProducts) {
                 try {
                   const localLocks = JSON.parse(savedProducts);
@@ -3735,7 +4235,7 @@
           { id: 'training', name: 'Tài liệu đào tạo', icon: 'bi-mortarboard-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'inventory', name: 'Mặt bằng căn hộ', icon: 'bi-grid-3x3-gap-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'building', name: 'Quy mô tòa nhà', icon: 'bi-buildings-fill', iconColor: 'text-[#2F2D74]' },
-          { id: 'compare', name: 'Bảng hàng chi tiết', icon: 'bi-table', iconColor: 'text-[#2F2D74]' },
+          { id: 'compare', name: 'So sánh căn hộ', icon: 'bi-table', iconColor: 'text-[#2F2D74]' },
           { id: 'policy', name: 'Chính sách bán hàng', icon: 'bi-file-earmark-text-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'tour360', name: 'Ảnh 360° thực tế', icon: 'bi-camera-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'progress', name: 'Tiến độ thi công', icon: 'bi-calendar-event-fill', iconColor: 'text-[#2F2D74]' }
@@ -3820,7 +4320,7 @@
           loadInventoryRealtime();
 
           // Phục hồi session user nếu có
-          const savedUser = localStorage.getItem('huyhung_standalone_user');
+          const savedUser = localStorage.getItem('khanhhuyen_standalone_user');
           if (savedUser) {
             user.value = JSON.parse(savedUser);
           }
@@ -3885,20 +4385,20 @@
           }
           
           user.value = {
-            fullName: 'Phùng Huy Hưng',
+            fullName: 'Khánh Huyền',
             phone: loginPhone.value,
             avatarUrl: 'https://s3-hfx03.fptcloud.com/admin-bds/odoo/avatar.jpg_2e826f43fcd28fbd4d6f4479dfe213c9646e6ef0',
             role: 'sale'
           };
 
-          localStorage.setItem('huyhung_standalone_user', JSON.stringify(user.value));
+          localStorage.setItem('khanhhuyen_standalone_user', JSON.stringify(user.value));
           showLoginModal.value = false;
           loginPhone.value = '';
         }
 
         function logout() {
           user.value = null;
-          localStorage.removeItem('huyhung_standalone_user');
+          localStorage.removeItem('khanhhuyen_standalone_user');
         }
 
         // Đặt chỗ căn
@@ -3927,7 +4427,7 @@
           }
 
           // Lưu vào localStorage
-          localStorage.setItem('huyhung_standalone_products', JSON.stringify(allProducts.value));
+          localStorage.setItem('khanhhuyen_standalone_products', JSON.stringify(allProducts.value));
 
           alert(`Khóa giữ chỗ căn hộ ${selectedProduct.value.code} thành công trong 15 phút!`);
           showLockConfirmModal.value = false;
@@ -3962,7 +4462,7 @@
           });
 
           if (hasChanged) {
-            localStorage.setItem('huyhung_standalone_products', JSON.stringify(allProducts.value));
+            localStorage.setItem('khanhhuyen_standalone_products', JSON.stringify(allProducts.value));
           }
         }
 
@@ -4263,8 +4763,8 @@
           }
 
           html2canvas(element, {
-            useCORS: true,
-            allowTaint: true,
+            useCORS: isOnline.value,
+            allowTaint: !isOnline.value,
             backgroundColor: '#ffffff',
             scale: 2
           }).then(canvas => {
@@ -4292,10 +4792,9 @@
         const isBrokerTyping = ref(false);
         const chatMessages = ref([]);
         const chatChips = ref([
-          "Tư vấn bảng hàng & giá mới nhất",
-          "Tính phương án dòng tiền trả góp",
-          "Đặt lịch đi xem nhà mẫu",
-          "Nhắn qua Zalo trực tiếp"
+          "Tìm kiếm thông tin căn hộ",
+          "Chính sách bán hàng",
+          "Cần tư vấn trực tiếp"
         ]);
         const chatContainer = ref(null);
 
@@ -4306,17 +4805,12 @@
             chatMessages.value = [
               {
                 sender: 'broker',
-                text: 'Chào anh/chị! Em là Huy Hưng, đại diện tư vấn dự án Imperia Ocean City - The Parkland.',
-                time: timeStr
-              },
-              {
-                sender: 'broker',
-                text: 'Anh/chị đang tìm hiểu căn hộ mấy phòng ngủ hoặc cần tư vấn phương án tài chính nào ạ?',
+                text: '👋 Chào Anh/Chị! Em là Admin QueenLand - trợ lý 24/7.<br><br>Anh chị đang cần hỗ trợ thông tin nào về dự án ạ?',
                 time: timeStr
               }
             ];
           }
-        };
+        };;
 
         const scrollChatToBottom = () => {
           if (chatContainer.value) {
@@ -4349,15 +4843,15 @@
             const textLower = userText.toLowerCase();
             
             if (textLower.includes('giá') || textLower.includes('bảng hàng') || textLower.includes('chính sách')) {
-              reply = 'Dạ anh/chị, bảng giá và chính sách bán hàng mới nhất của The Parkland đang được em cập nhật liên tục. Để nhận file PDF trực tiếp, anh/chị có thể kết bạn Zalo với em qua số <strong>0989.151.897</strong> hoặc click vào liên kết Zalo này nhé: <a href="https://zalo.me/0989151897" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-extrabold">zalo.me/0989151897</a>.';
+              reply = 'Dạ anh/chị, bảng giá và chính sách bán hàng mới nhất của The Parkland đang được em cập nhật liên tục. Để nhận file PDF bảng hàng và chính sách bán hàng trực tiếp, anh/chị có thể kết bạn Zalo với đại diện tư vấn Khánh Huyền qua số <strong>0926.066.888</strong> hoặc click vào liên kết Zalo này nhé: <a href="https://zalo.me/0926066888" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-extrabold">zalo.me/0926066888</a>.';
             } else if (textLower.includes('dòng tiền') || textLower.includes('trả góp') || textLower.includes('tài chính') || textLower.includes('vay')) {
-              reply = 'Dạ, phương án tính dòng tiền trả góp rất quan trọng khi mua Parkland. Em có thể lập bảng tính chi tiết tiến độ thanh toán và gói vay cho riêng căn hộ anh/chị chọn. Anh/chị vui lòng để lại Số điện thoại hoặc kết bạn nhanh qua Zalo <strong>0989.151.897</strong> để em gửi file Excel dòng tiền ạ!';
+              reply = 'Dạ, phương án tính dòng tiền trả góp rất quan trọng khi mua Parkland. ADMIN Queenland có thể lập bảng tính chi tiết tiến độ thanh toán và gói vay cho riêng căn hộ anh/chị chọn. Anh/chị vui lòng để lại Số điện thoại hoặc kết bạn nhanh qua Zalo <strong>0926.066.888</strong> để em báo chuyên viên gửi bảng tính dòng tiền chi tiết ạ!';
             } else if (textLower.includes('lịch') || textLower.includes('nhà mẫu') || textLower.includes('xem')) {
-              reply = 'Dạ vâng! Nhà mẫu dự án Imperia Ocean City luôn mở cửa đón tiếp khách hàng. Anh/chị dự kiến đi xem vào ngày nào trong tuần ạ? Anh/chị nhắn em Số điện thoại hoặc liên hệ Hotline <strong>0989.151.897</strong> để em đăng ký thẻ cư dân vào tham quan nhé!';
-            } else if (textLower.includes('zalo') || textLower.includes('trực tiếp')) {
-              reply = 'Dạ anh/chị có thể chat trực tiếp với em qua Zalo bằng cách click vào link: <a href="https://zalo.me/0989151897" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-extrabold">zalo.me/0989151897</a> hoặc gọi Hotline: <strong>0989.151.897</strong> hỗ trợ 24/7 ạ!';
+              reply = 'Dạ vâng! Nhà mẫu dự án Imperia Ocean City luôn mở cửa đón tiếp khách hàng. Anh/chị dự kiến đi xem vào ngày nào trong tuần ạ? Anh/chị nhắn em Số điện thoại hoặc liên hệ Hotline <strong>0926.066.888</strong> để em đăng ký thẻ cư dân vào tham quan nhé!';
+            } else if (textLower.includes('zalo') || textLower.includes('liên hệ') || textLower.includes('tư vấn') || textLower.includes('trực tiếp') || textLower.includes('huy hưng') || textLower.includes('broker') || textLower.includes('chuyên viên')) {
+              reply = 'Dạ anh/chị có thể chat trực tiếp với chị Khánh Huyền qua Zalo bằng cách click vào link: <a href="https://zalo.me/0926066888" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-extrabold">zalo.me/0926066888</a> hoặc gọi Hotline: <strong>0926.066.888</strong> hỗ trợ 24/7 ạ!';
             } else {
-              reply = 'Cảm ơn anh/chị đã quan tâm! Em đã nhận được thông tin. Để được tư vấn chi tiết và nhanh chóng nhất 24/7, anh/chị vui lòng liên hệ trực tiếp qua số Hotline/Zalo: <strong>0989.151.897</strong> hoặc để lại số điện thoại tại đây để em gọi lại tư vấn ngay ạ!';
+              reply = 'Cảm ơn anh/chị đã quan tâm dự án Parkland! Em đã nhận được thông tin. Để được tư vấn chi tiết và nhanh chóng nhất 24/7 về các căn hộ, chính sách chiết khấu và đăng ký tham quan căn hộ mẫu Imperia Ocean City, anh/chị vui lòng liên hệ trực tiếp qua số Hotline/Zalo của chị Khánh Huyền: <strong>0926.066.888</strong> hoặc để lại số điện thoại tại đây để bên em gọi lại hỗ trợ ngay nhé!';
             }
             
             chatMessages.value.push({
@@ -4368,7 +4862,7 @@
             
             setTimeout(scrollChatToBottom, 50);
           }, 1200);
-        };
+        };;
 
         const sendChatMessage = () => {
           const text = chatInput.value.trim();
@@ -4403,6 +4897,7 @@
           triggerBrokerResponse(chipText);
         };
 
+        const isOnline = ref(window.location.protocol.startsWith('http'));
         return {
           project,
           subdivisions,
@@ -4524,7 +5019,8 @@
           toggleChatBox,
           sendChatMessage,
           handleChipClick,
-          formatMessageText
+          formatMessageText,
+          isOnline
         };
 
         // Hàm khởi tạo các hoạt cảnh GSAP (Marquee, Text Reveal, Split Pinning, Bento Card Slide-in)
@@ -4624,6 +5120,29 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
