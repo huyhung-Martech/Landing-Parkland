@@ -3541,11 +3541,11 @@
     <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h3 class="text-white font-bold text-lg mb-4">Khánh Huyền BĐS</h3>
+          <h3 class="text-white font-bold text-lg mb-4">SALEHUB.DEV</h3>
           <p class="text-sm leading-relaxed mb-4">
             Nền tảng hỗ trợ đại lý và khách hàng tiếp cận trực tuyến quỹ căn hộ cao cấp Imperia Ocean City - The Parkland nhanh chóng, minh bạch và chuyên nghiệp.
           </p>
-          <span class="text-xs text-slate-500 block">
+          <span class="text-xs text-slate-500 hidden md:block">
             Bản quyền thuộc về Digital Marketing 03.
           </span>
         </div>
@@ -3563,7 +3563,7 @@
           <ul class="space-y-3 text-sm">
             <li class="flex items-center gap-2">
               <i class="bi bi-geo-alt-fill text-accent"></i>
-              <span>Trung tâm giao dịch BĐS QueenLand, Hà Nội</span>
+              <span>Công ty giao dịch BĐS QueenLand, Hà Nội</span>
             </li>
             <li class="flex items-center gap-2">
               <i class="bi bi-envelope-fill text-accent"></i>
@@ -3575,6 +3575,12 @@
             </li>
           </ul>
         </div>
+      </div>
+      <!-- Copyright block for mobile -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-slate-800 text-center md:hidden">
+        <span class="text-xs text-slate-500 block">
+          Bản quyền thuộc về Digital Marketing 03.
+        </span>
       </div>
     </footer>
 
@@ -4711,9 +4717,12 @@
           if (window.__APARTMENT_IMAGES__ && window.__APARTMENT_IMAGES__[code.toUpperCase()]) {
             return window.__APARTMENT_IMAGES__[code.toUpperCase()];
           }
+          // Chuẩn hóa loại căn hộ (ví dụ: 2BR+ -> 2PN+, 2BR -> 2PN)
+          const normalizedType = type ? type.toUpperCase().replace('BR', 'PN') : '';
+          
           // Tìm ảnh thiết kế mặt bằng mẫu theo loại căn hộ
           if (project.value && project.value.floorPlans) {
-            const plan = project.value.floorPlans.find(f => f.code.toUpperCase() === type.toUpperCase());
+            const plan = project.value.floorPlans.find(f => f.code.toUpperCase() === normalizedType);
             if (plan && plan.image) return plan.image;
           }
           return 'https://s3-hfx03.fptcloud.com/admin-bds/odoo/AVATA.jpg_f6ef6d7f9adc7c771d524401c9efd233aead22ba';
