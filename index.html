@@ -1876,6 +1876,16 @@
                   <i class="bi bi-geo text-primary"></i> Vị trí địa lý
                 </h4>
                 <div class="prose-custom text-slate-700 text-sm leading-relaxed" v-html="project?.locationHtml"></div>
+                
+                <!-- Bổ sung hình ảnh sơ đồ vị trí mới -->
+                <div class="flex items-center justify-center p-2 border border-slate-100 rounded-xl bg-slate-50/50 mt-4">
+                  <img 
+                    src="images/location-map.jpg" 
+                    class="w-full object-contain rounded-lg shadow-md hover:scale-[1.005] transition-transform cursor-zoom-in"
+                    alt="Sơ đồ vị trí dự án mới"
+                    @click="openImage('images/location-map.jpg')"
+                    loading="lazy">
+                </div>
               </div>
 
               <!-- Google Map Embed -->
