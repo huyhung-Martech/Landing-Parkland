@@ -2327,62 +2327,25 @@
                 <h2 class="text-h1 uppercase tracking-wide text-primary">
                   CHÍNH SÁCH BÁN HÀNG & HỖ TRỢ ĐỘT PHÁ
                 </h2>
-                <p class="text-caption text-slate-400 mt-1">
-                  Mở ra cơ hội sở hữu căn hộ Imperia Parkland cao cấp với rào cản tài chính thấp nhất thị trường.
-                </p>
               </div>
 
-              <!-- Options Grid -->
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Option 1 -->
-                <div class="card-premium p-5 flex flex-col justify-between hover:-translate-y-1">
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                      <span class="text-caption text-slate-400">Phương án 1</span>
-                      <span class="text-xs font-black bg-blue-50 text-blue-600 border border-blue-100 px-2.5 py-0.5 rounded-lg">Hỗ trợ 0% LS</span>
-                    </div>
-                    <h4 class="text-h2 uppercase tracking-wide text-primary">Vay Vốn Ngân Hàng</h4>
-                    <p class="text-body leading-relaxed">
-                      Hỗ trợ giải ngân tối đa 80% GTCH qua Techcombank. Lãi suất 0% kéo dài tới 24 tháng, ân hạn nợ gốc suốt thời gian hỗ trợ lãi suất.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-slate-100 bg-slate-50 p-3 rounded-xl text-center">
-                    <span class="text-caption text-slate-700">Chỉ cần chuẩn bị vốn tự có 15% - 20% ban đầu.</span>
-                  </div>
+              <!-- Grid hiển thị 2 ảnh chính sách bán hàng mới -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-center justify-center p-2 border border-slate-100 rounded-xl bg-slate-50/50">
+                  <img 
+                    src="images/policy/policy-1.jpg" 
+                    class="max-w-full max-h-[800px] object-contain rounded-lg shadow-md hover:scale-[1.01] transition-transform cursor-zoom-in"
+                    alt="Chính sách bán hàng 1"
+                    @click="openImage('images/policy/policy-1.jpg')"
+                    loading="lazy">
                 </div>
-
-                <!-- Option 2 -->
-                <div class="card-premium p-5 flex flex-col justify-between hover:-translate-y-1">
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                      <span class="text-caption text-slate-400">Phương án 2</span>
-                      <span class="text-xs font-black bg-emerald-50 text-emerald-600 border border-emerald-100 px-2.5 py-0.5 rounded-lg">Chiết khấu -8%</span>
-                    </div>
-                    <h4 class="text-h2 uppercase tracking-wide text-primary">Thanh Toán Theo Tiến Độ</h4>
-                    <p class="text-body leading-relaxed">
-                      Nhận chiết khấu trực tiếp 8% giá trị căn hộ. Thanh toán chia làm 8 đợt cách nhau 3 tháng trong suốt 2 năm, giảm gánh nặng tài chính.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-slate-100 bg-slate-50 p-3 rounded-xl text-center">
-                    <span class="text-caption text-slate-700">Mỗi đợt thanh toán chỉ từ 10% giá trị hợp đồng.</span>
-                  </div>
-                </div>
-
-                <!-- Option 3 -->
-                <div class="card-premium p-5 flex flex-col justify-between hover:-translate-y-1">
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                      <span class="text-caption text-slate-400">Phương án 3</span>
-                      <span class="text-xs font-black bg-amber-50 text-amber-600 border border-amber-100 px-2.5 py-0.5 rounded-lg">Chiết khấu -15%</span>
-                    </div>
-                    <h4 class="text-h2 uppercase tracking-wide text-primary">Thanh Toán Sớm 95%</h4>
-                    <p class="text-body leading-relaxed">
-                      Nhận chiết khấu tối đa lên tới 15% GTCH khi ký hợp đồng mua bán và giải ngân sớm 95% bằng nguồn vốn tự có.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-slate-100 bg-slate-50 p-3 rounded-xl text-center">
-                    <span class="text-caption text-slate-700">Tối ưu hóa dòng tiền tối đa cho nhà đầu tư sẵn vốn.</span>
-                  </div>
+                <div class="flex items-center justify-center p-2 border border-slate-100 rounded-xl bg-slate-50/50">
+                  <img 
+                    src="images/policy/policy-2.jpg" 
+                    class="max-w-full max-h-[800px] object-contain rounded-lg shadow-md hover:scale-[1.01] transition-transform cursor-zoom-in"
+                    alt="Chính sách bán hàng 2"
+                    @click="openImage('images/policy/policy-2.jpg')"
+                    loading="lazy">
                 </div>
               </div>
             </div>
