@@ -1209,6 +1209,16 @@
 .rounded-xl  { border-radius: 1rem; }   /* 12px → 16px */
 .rounded-2xl { border-radius: 1rem; }   /* giữ 16px, làm chuẩn chung */
 .rounded-3xl { border-radius: 1rem; }   /* 24px → 16px */
+
+/* [DRAFT] Khung ảnh phối cảnh (Overview).
+   Mobile: khung 16:9 khớp đúng tỷ lệ ảnh gốc, không cắt xén.
+   Desktop (≥768px): cao bằng cột bảng thông số bên cạnh như bản gốc, tránh
+   để lại khoảng trống. Dùng media query trực tiếp thay vì aspect-auto của
+   Tailwind vì thứ tự utility khiến md:aspect-auto không ghi đè được. */
+.ov-img-frame { aspect-ratio: 16 / 9; }
+@media (min-width: 768px) {
+  .ov-img-frame { aspect-ratio: auto; height: 100%; min-height: 0; }
+}
 </style>
 </head>
 <body class="font-sans">
@@ -1530,7 +1540,7 @@
                   </div>
                 </div>
                 <div class="md:col-span-7 flex flex-col">
-                  <div class="relative rounded-2xl aspect-[16/9] md:aspect-auto md:h-full md:min-h-0 w-full group glow-border-card cursor-pointer" @click="openImage(project?.overviewImage)">
+                  <div class="relative rounded-2xl ov-img-frame w-full group glow-border-card cursor-pointer" @click="openImage(project?.overviewImage)">
                     <div class="w-full h-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 relative isolate">
                       <img :src="project?.overviewImage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-zoom-in" alt="Overview Area" loading="lazy">
                       <!-- Zoom indicator overlay on hover -->
