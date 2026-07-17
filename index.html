@@ -1231,6 +1231,15 @@
 @media (min-width: 768px) {
   .md\:h-\[520px\] { height: 520px; }
 }
+
+/* [FIX] Track carousel căn giữa bằng top-[42%]/md:top-[44%], nhưng hai class
+   arbitrary này cũng bị sót khi build → track không có top, bị translateY(-50%)
+   kéo lên trên → thẻ (và ảnh mặt bằng ở nửa trên thẻ) bị cắt ngoài khung, để
+   lại khoảng trống dưới. Bổ sung top còn thiếu để thẻ về đúng giữa khung. */
+.top-\[42\%\] { top: 42%; }
+@media (min-width: 768px) {
+  .md\:top-\[44\%\] { top: 44%; }
+}
 </style>
 </head>
 <body class="font-sans">
