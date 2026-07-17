@@ -1222,6 +1222,15 @@
 @media (min-width: 768px) {
   .ov-img-frame { aspect-ratio: auto; height: 100%; min-height: 0; }
 }
+
+/* [FIX] Khung carousel "Sản phẩm" dùng class h-[440px]/md:h-[520px] nhưng hai
+   class arbitrary này bị sót khi build Tailwind static nên không có định nghĩa
+   → khung sập xuống 2px, overflow-hidden cắt sạch các thẻ căn bên trong (dù
+   thẻ vẫn tồn tại). Bổ sung đúng chiều cao còn thiếu để khung hiện lại. */
+.h-\[440px\] { height: 440px; }
+@media (min-width: 768px) {
+  .md\:h-\[520px\] { height: 520px; }
+}
 </style>
 </head>
 <body class="font-sans">
