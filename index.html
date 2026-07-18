@@ -1203,41 +1203,31 @@
 }
 
 /* ==========================================================================
-   [DRAFT] Làm mượt giao diện mobile — thống nhất bo góc các khối lớn.
-   Trang đang trộn 4 độ bo (8/12/16/24px), có chỗ khung con bo nhiều hơn
-   khung cha nên nhìn rời rạc. Gom mọi card/khung lớn về 16px; giữ nguyên
-   .rounded-lg (8px) cho chip/ô nhập nhỏ và .rounded-full cho nút bo tròn.
-   Đặt cuối khối style tuỳ biến nên thắng utility Tailwind ở cùng cấp.
+   [MOBILE POLISH + FIX] Bổ sung cho template. Đặt cuối khối style tuỳ biến nên
+   thắng utility Tailwind ở cùng cấp. Xem các commit fix tương ứng.
    ========================================================================== */
-.rounded-xl  { border-radius: 1rem; }   /* 12px → 16px */
-.rounded-2xl { border-radius: 1rem; }   /* giữ 16px, làm chuẩn chung */
-.rounded-3xl { border-radius: 1rem; }   /* 24px → 16px */
 
-/* [DRAFT] Khung ảnh phối cảnh (Overview).
-   Mobile: khung 16:9 khớp đúng tỷ lệ ảnh gốc, không cắt xén.
-   Desktop (≥768px): cao bằng cột bảng thông số bên cạnh như bản gốc, tránh
-   để lại khoảng trống. Dùng media query trực tiếp thay vì aspect-auto của
-   Tailwind vì thứ tự utility khiến md:aspect-auto không ghi đè được. */
+/* Thống nhất bo góc các khối lớn về 16px (trang trộn 8/12/16/24px). Giữ
+   .rounded-lg (8px) cho chip/ô nhập nhỏ và .rounded-full cho nút bo tròn. */
+.rounded-xl  { border-radius: 1rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-3xl { border-radius: 1rem; }
+
+/* Khung ảnh phối cảnh (Overview): mobile 16:9 khớp tỷ lệ ảnh gốc (không cắt);
+   desktop cao bằng cột bảng thông số bên cạnh như bản gốc. */
 .ov-img-frame { aspect-ratio: 16 / 9; }
 @media (min-width: 768px) {
   .ov-img-frame { aspect-ratio: auto; height: 100%; min-height: 0; }
 }
 
-/* [FIX] Khung carousel "Sản phẩm" dùng class h-[440px]/md:h-[520px] nhưng hai
-   class arbitrary này bị sót khi build Tailwind static nên không có định nghĩa
-   → khung sập xuống 2px, overflow-hidden cắt sạch các thẻ căn bên trong (dù
-   thẻ vẫn tồn tại). Bổ sung đúng chiều cao còn thiếu để khung hiện lại. */
+/* Khung carousel "Sản phẩm" dùng h-[440px]/md:h-[520px] và track căn giữa
+   bằng top-[42%]/md:top-[44%], nhưng các class arbitrary này bị sót khỏi bản
+   Tailwind static nhúng trong template → khung sập 2px và thẻ bị kéo lệch.
+   Bổ sung định nghĩa còn thiếu để carousel hiện đúng. */
 .h-\[440px\] { height: 440px; }
-@media (min-width: 768px) {
-  .md\:h-\[520px\] { height: 520px; }
-}
-
-/* [FIX] Track carousel căn giữa bằng top-[42%]/md:top-[44%], nhưng hai class
-   arbitrary này cũng bị sót khi build → track không có top, bị translateY(-50%)
-   kéo lên trên → thẻ (và ảnh mặt bằng ở nửa trên thẻ) bị cắt ngoài khung, để
-   lại khoảng trống dưới. Bổ sung top còn thiếu để thẻ về đúng giữa khung. */
 .top-\[42\%\] { top: 42%; }
 @media (min-width: 768px) {
+  .md\:h-\[520px\] { height: 520px; }
   .md\:top-\[44\%\] { top: 44%; }
 }
 </style>
@@ -2090,7 +2080,7 @@
             <div class="bg-white p-4 md:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
               <div class="border-b border-slate-200 pb-4">
                 <h3 class="text-sm font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2">
-                  <i class="bi bi-images text-primary"></i> Sơ đồ thiết kế mặt bằng & Quy mô tòa nhà
+                  <i class="bi bi-images text-primary"></i> Tiện ích tòa nhà
                 </h3>
               </div>
               <div class="flex flex-col gap-6">
