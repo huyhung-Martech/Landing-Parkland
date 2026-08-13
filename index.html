@@ -2597,6 +2597,69 @@
                 <p class="text-sm text-slate-700 leading-relaxed mt-2.5 font-bold">Dự án đang trong quá trình xây dựng móng cọc và kết cấu phần thân vượt tiến độ đề ra.</p>
               </div>
             </div>
+          <!-- TAB THƯ VIỆN HÌNH ẢNH CATEGORY -->
+          <div v-else-if="activeTab === 'gallery'" class="space-y-6">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-r from-[#2F2D74] to-[#1E1B4B] rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+              <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-3">
+                  <i class="bi bi-images"></i> Bộ Sưu Tập Thực Tế
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">THƯ VIỆN HÌNH ẢNH PHÂN KHU & TIỆN ÍCH</h2>
+                <p class="text-white/80 text-sm mt-2 max-w-2xl">
+                  Khám phá toàn bộ hình ảnh thực tế về không gian hành lang, nội thất bàn giao và tiện ích trong nhà cao cấp tại dự án The Parkland.
+                </p>
+              </div>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+              <button 
+                @click="activeCatFilter = 'all'"
+                :class="activeCatFilter === 'all' ? 'bg-[#2F2D74] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
+                class="px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm whitespace-nowrap transition-all duration-200 flex items-center gap-2 cursor-pointer">
+                <i class="bi bi-grid-fill"></i>
+                Tất cả ({{ allCategoryImagesList.length }})
+              </button>
+              
+              <button 
+                v-for="(cat, key) in categoryMapData" 
+                :key="key"
+                @click="activeCatFilter = key"
+                :class="activeCatFilter === key ? 'bg-[#2F2D74] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
+                class="px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm whitespace-nowrap transition-all duration-200 flex items-center gap-2 cursor-pointer">
+                <i class="bi bi-folder-fill text-amber-500"></i>
+                {{ cat.name }} ({{ cat.images.length }})
+              </button>
+            </div>
+
+            <!-- Images Grid (Strict Mobile-Friendly 2 Columns) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div 
+                v-for="(item, idx) in filteredCategoryImages" 
+                :key="idx"
+                @click="openImage(item.url)"
+                class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 cursor-pointer relative flex flex-col">
+                
+                <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100 relative">
+                  <img 
+                    :src="item.url" 
+                    :alt="item.categoryName"
+                    loading="lazy"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="w-10 h-10 rounded-full bg-white/90 text-[#2F2D74] flex items-center justify-center shadow-lg">
+                      <i class="bi bi-zoom-in text-lg"></i>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="p-2.5 sm:p-3 flex items-center justify-between bg-white border-t border-slate-100">
+                  <span class="text-[11px] font-semibold text-slate-600 truncate">{{ item.categoryName }}</span>
+                  <i class="bi bi-arrows-angle-expand text-xs text-slate-400 group-hover:text-[#2F2D74]"></i>
+                </div>
+              </div>
+            </div>
           </div>
 
 
@@ -4177,6 +4240,7 @@
     window.__PRODUCTS__ = []
     window.__APARTMENT_IMAGES__ = {"M1.1505":"images/apartments/M1-1505.webp","M1.1506":"images/apartments/M1-1506.webp","M1.1508":"images/apartments/M1-1508.webp","M1.1509":"images/apartments/M1-1509.webp","M1.1511":"images/apartments/M1-1511.webp","M1.1512A":"images/apartments/M1-1512A.webp","M1.1515A":"images/apartments/M1-1515A.webp","P2.1715":"images/apartments/P2-1715.webp","P2.1716":"images/apartments/P2-1716.webp","P2.1806":"images/apartments/P2-1806.png","P2.2301":"images/apartments/P2-2301.webp","P2.2302":"images/apartments/P2-2302.webp","P2.2303":"images/apartments/P2-2303.webp","P3.3101":"images/apartments/P3-3101.webp","P3.3102":"images/apartments/P3-3102.webp","P3.3106":"images/apartments/P3-3106.webp","P3.3108A":"images/apartments/P3-3108A.webp","P5.1912A":"images/apartments/P5-1912A.webp","P5.2011":"images/apartments/P5-2011.webp","P5.2408":"images/apartments/P5-2408.webp","P5.2408A":"images/apartments/P5-2408A.webp","P5.2409":"images/apartments/P5-2409.webp","P5.2601":"images/apartments/P5-2601.webp","P5.2602":"images/apartments/P5-2602.webp","P5.2603":"images/apartments/P5-2603.webp","P5.2605":"images/apartments/P5-2605.webp","P5.2605A":"images/apartments/P5-2605A.webp","P5.2606":"images/apartments/P5-2606.webp","P5.2611":"images/apartments/P5-2611.webp","P5.2612":"images/apartments/P5-2612.webp","P5.2612A":"images/apartments/P5-2612A.webp","P5.2615":"images/apartments/P5-2615.webp","P5.2615A":"images/apartments/P5-2615A.webp","P5.2616":"images/apartments/P5-2616.webp","P5.3508":"images/apartments/P5-3508.webp","P5.3508A":"images/apartments/P5-3508A.webp","P6.1505":"images/apartments/P6-1505.webp","P6.1505A":"images/apartments/P6-1505A.webp","P6.1508":"images/apartments/P6-1508.webp","P6.1508A":"images/apartments/P6-1508A.webp","P6.1509":"images/apartments/P6-1509.webp","P6.1510":"images/apartments/P6-1510.webp","P6.1512A":"images/apartments/P6-1512A.webp","P6.1515A":"images/apartments/P6-1515A.webp","P8.0703":"images/apartments/P8-0703.webp","P8.0715A":"images/apartments/P8-0715A.webp","P8.0719":"images/apartments/P8-0719.webp"}
     window.__CALCULATION_SHEETS__ = {"P2.1715":"https://drive.google.com/drive/folders/1fBhnmUbz7iMZVrVO9Z9EuezoGpl9kNmt?usp=drive_link","P2.2303":"https://drive.google.com/drive/folders/1OaV_CgQgvUSR78oTRSOlOp_TiXCGWvS3?usp=drive_link","P2.2302":"https://drive.google.com/drive/folders/16uNuj39ro1Odbh5cgiQe-_h2YbbkOF2H?usp=drive_link","P2.1716":"https://drive.google.com/drive/folders/1DlBB4VE040kkgW_t13zHddYwiN6p7rbN?usp=drive_link","P2.2301":"https://drive.google.com/drive/folders/1xNymp5G9NCWMkgNL9WfoDXnL0ZHvxwFL?usp=drive_link","P3.3102":"https://drive.google.com/drive/u/0/folders/1goEWkCqClkWxjwGvSXaRRTK-VM5IiMIp","P3.3108A":"https://drive.google.com/drive/u/0/folders/1x9ZlH7xeuGWj_FTWGyL5ErKr93flfcKH","P3.3101":"https://drive.google.com/drive/u/0/folders/1Qd3itZHDdlQvQJVP_b7LDK88i1E7M0Mo","P3.3106":"https://drive.google.com/drive/u/0/folders/1iV6x4mClfBz5pJHV1sznRQRufsv79ijh","P5.2615":"https://drive.google.com/drive/folders/1mJBEPAzYUeoseBRTzuR-Y4AFNLAMsio1?usp=drive_link","P5.3508":"https://drive.google.com/drive/folders/10XOe--oBJ6LuJMd2iFY_Dg2o9pOdlQsS?usp=drive_link","P5.2603":"https://drive.google.com/drive/folders/1VvX83HsY-QstF5BUTP45fgzxvn1kZyo9?usp=drive_link","P5.2602":"https://drive.google.com/drive/folders/1cEaiQSpkztDYOXq8bn2QUlWhluIWBBLh?usp=drive_link","P5.2612":"https://drive.google.com/drive/folders/1ST2pruwq9hAVhra7IHj4Dpnk3uK6mU1x?usp=drive_link","P5.2408":"https://drive.google.com/drive/folders/1FoXR88oo6zo9xpw-OvpWbSp4DhKrHUAe?usp=drive_link","P5.2611":"https://drive.google.com/drive/folders/1uzOMLPbeLY-hvQnFaEo8MrmOxK2E0lGU?usp=drive_link","P5.2011":"https://drive.google.com/drive/folders/1Ze2zdrXAVaxkIq6hXqh7-rhb7eBjEK72?usp=drive_link","P5.2605":"https://drive.google.com/drive/folders/1RIgVu9OlCXhfffB2wHGGu9C_nXLChkEi?usp=drive_link","P5.2605A":"https://drive.google.com/drive/folders/1f0HyOueMgOaJP3PdAZH1miDYWm8nHBAi?usp=drive_link","P5.2612A":"https://drive.google.com/drive/folders/1wM_ujftTfCZq3HWpL6PQTNX8sgkD3-me?usp=drive_link","P5.1912A":"https://drive.google.com/drive/folders/1LQaSO0pAjRwoCCexo2ATmTPr9c0uEF4j?usp=drive_link","P5.2409":"https://drive.google.com/drive/folders/17MDxdgRPCNiomirL8TspyfhMZRiJjHMR?usp=drive_link","P5.2615A":"https://drive.google.com/drive/folders/1VN_MmjjaOZpdZHqKJWoFUfEcTf_dhPwr?usp=drive_link","P5.3508A":"https://drive.google.com/drive/folders/1dNxv0hpPeXs6AzogxPzqVosnQaS6TNvk?usp=drive_link","P5.2616":"https://drive.google.com/drive/folders/19Lguaiu868wXCdtFCIcg31x285hHUgxx?usp=drive_link","P5.2408A":"https://drive.google.com/drive/folders/11vz42rDvCnnAWYGGK1L0EcyxcWvJrWL6?usp=drive_link","P5.2601":"https://drive.google.com/drive/folders/102zjbiJFlqfrtV_W778wtZRMl1xIHtZV?usp=drive_link","P5.2606":"https://drive.google.com/drive/folders/1UmcoInoVL6U3sTcF8VuCFIptQlsr4Hzh?usp=drive_link","P6.1508A":"https://drive.google.com/drive/folders/1TTbZom4DDXo7yBNkwhAiOnLuKcGb-c5a?usp=drive_link","P6.1510":"https://drive.google.com/drive/folders/1NvoP0Cqx7ETAmwxrTwzuM7yJcqOY936I?usp=drive_link","P6.1512A":"https://drive.google.com/drive/folders/1K-eHXdAuhfx0cpZBf8e5gA6HQk5je6oO?usp=drive_link","P6.1515A":"https://drive.google.com/drive/folders/1oWEHmPAPXpGMXf451vwxRW1KMP_d9Tk-?usp=drive_link","P6.1505A":"https://drive.google.com/drive/folders/10jUoH2AsZixWg39rnwvOEvszeR-wFttY?usp=drive_link","P6.1505":"https://drive.google.com/drive/folders/1Vi7UX0nTNGSsKLnVWFxLOrgfB21ueBsG?usp=drive_link","P6.1508":"https://drive.google.com/drive/folders/1laAA6yLcNSiwxEYYfhZfIrMShq7OsNyP?usp=drive_link","P6.1509":"https://drive.google.com/drive/folders/1JJsfwdIZUjKNyBhxOUqModicozQie43F?usp=drive_link","P8.0703":"https://drive.google.com/drive/u/0/folders/1ZJVWGpSpVPB-F3jz_CQe6f3ErMIkv_Rr","P8.0715A":"https://drive.google.com/drive/u/0/folders/12vkBJLKuc3qL86WDzANbtsC-neCInPZP","P8.0719":"https://drive.google.com/drive/folders/11MIx-UN9HhMrHkIenUY0ZRtIiktdz7g8?usp=drive_link","M1.1505":"https://drive.google.com/drive/folders/1_VmMDAebivFo-yKh-EdjeIIXGaONGbto?usp=drive_link","M1.1506":"https://drive.google.com/drive/folders/1tMUMm30xwx-JybPa1pbbyrN-hQ7wbllp?usp=drive_link","M1.1508A":"https://drive.google.com/drive/folders/1tAI3UX3om5xkqMhi1_pl_5aYg2Pytbba?usp=drive_link","M1.1508":"https://drive.google.com/drive/folders/1mWzihep1suYluSLINunfmYWpB1IzAsCc?usp=drive_link","M1.1509":"https://drive.google.com/drive/folders/1ln4IkKXNLGjGJAKoQ7LJ7WH3vxxIgmSF?usp=drive_link","M1.1510":"https://drive.google.com/drive/folders/17L75A4TvIDGDXHxbDza2HBXLvgWTLbgr?usp=drive_link","M1.1511":"https://drive.google.com/drive/folders/1J6fzkETrCxAoPqtQkDyZltMnP_f_kdbS?usp=drive_link","M1.1512":"https://drive.google.com/drive/folders/1NwpLRtJO1AGO-37U8S9VTnhLVFa20J9o?usp=drive_link","M1.1512A":"https://drive.google.com/drive/folders/1oYVLmduunFTU6ePEsXcvGwmpIBDk70jE?usp=drive_link","M1.1515A":"https://drive.google.com/drive/folders/1X0zkMNTfoQ2bS2DFOZNsETcI-Ec-aNCp?usp=drive_link"}
+    window.__CATEGORY_IMAGES__ = {"hanh-lang":{"key":"hanh-lang","name":"Hành lang tòa nhà","images":["images/category/hanh-lang/hanh-lang-1.jpg","images/category/hanh-lang/hanh-lang-10.jpg","images/category/hanh-lang/hanh-lang-11.jpg","images/category/hanh-lang/hanh-lang-12.jpg","images/category/hanh-lang/hanh-lang-13.jpg","images/category/hanh-lang/hanh-lang-14.jpg","images/category/hanh-lang/hanh-lang-2.jpg","images/category/hanh-lang/hanh-lang-3.jpg","images/category/hanh-lang/hanh-lang-4.jpg","images/category/hanh-lang/hanh-lang-5.jpg","images/category/hanh-lang/hanh-lang-6.jpg","images/category/hanh-lang/hanh-lang-7.jpg","images/category/hanh-lang/hanh-lang-8.jpg","images/category/hanh-lang/hanh-lang-9.jpg"]},"noi-that":{"key":"noi-that","name":"Nội thất bàn giao","images":["images/category/noi-that/noi-that-1.jpg","images/category/noi-that/noi-that-2.jpg","images/category/noi-that/noi-that-3.jpg","images/category/noi-that/noi-that-4.jpg","images/category/noi-that/noi-that-5.jpg","images/category/noi-that/noi-that-6.jpg","images/category/noi-that/noi-that-7.jpg","images/category/noi-that/noi-that-8.jpg"]},"tien-ich-trong-nha":{"key":"tien-ich-trong-nha","name":"Tiện ích trong nhà","images":["images/category/tien-ich-trong-nha/tien-ich-trong-nha-1.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-10.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-11.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-12.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-13.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-14.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-15.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-2.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-3.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-4.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-5.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-6.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-7.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-8.jpg","images/category/tien-ich-trong-nha/tien-ich-trong-nha-9.jpg"]}}
   </script>
 
   <!-- Script điều khiển Vue -->
@@ -4703,6 +4767,7 @@
         const tabs = [
           { id: 'overview', name: 'Tổng quan', icon: 'bi-house-door-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'location', name: 'Vị trí dự án', icon: 'bi-geo-alt-fill', iconColor: 'text-[#2F2D74]' },
+          { id: 'gallery', name: 'Thư viện hình ảnh', icon: 'bi-images', iconColor: 'text-[#2F2D74]' },
           { id: 'training', name: 'Tài liệu đào tạo', icon: 'bi-mortarboard-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'inventory', name: 'Mặt bằng căn hộ', icon: 'bi-grid-3x3-gap-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'building', name: 'Quy mô tòa nhà', icon: 'bi-buildings-fill', iconColor: 'text-[#2F2D74]' },
@@ -4711,6 +4776,36 @@
           { id: 'tour360', name: 'Ảnh 360° thực tế', icon: 'bi-camera-fill', iconColor: 'text-[#2F2D74]' },
           { id: 'progress', name: 'Tiến độ thi công', icon: 'bi-calendar-event-fill', iconColor: 'text-[#2F2D74]' }
         ];
+
+        // Quản lý Thư viện hình ảnh phân loại
+        const categoryMapData = ref(window.__CATEGORY_IMAGES__ || {});
+        const activeCatFilter = ref('all');
+
+        const allCategoryImagesList = computed(() => {
+          const list = [];
+          if (categoryMapData.value) {
+            Object.keys(categoryMapData.value).forEach(key => {
+              const item = categoryMapData.value[key];
+              if (item && item.images) {
+                item.images.forEach(img => {
+                  list.push({
+                    url: img,
+                    categoryKey: key,
+                    categoryName: item.name
+                  });
+                });
+              }
+            });
+          }
+          return list;
+        });
+
+        const filteredCategoryImages = computed(() => {
+          if (activeCatFilter.value === 'all') {
+            return allCategoryImagesList.value;
+          }
+          return allCategoryImagesList.value.filter(img => img.categoryKey === activeCatFilter.value);
+        });
 
         // Lọc sản phẩm theo tòa nhà đang chọn và tầng đang chọn
         const filteredProducts = computed(() => {
