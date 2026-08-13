@@ -2600,68 +2600,154 @@
           </div>
 
           <!-- TAB THƯ VIỆN HÌNH ẢNH CATEGORY -->
-          <div v-else-if="activeTab === 'gallery'" class="space-y-6">
-            <!-- Header Card -->
-            <div class="bg-gradient-to-r from-[#2F2D74] to-[#1E1B4B] rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+          <div v-else-if="activeTab === 'gallery'" class="space-y-6 animate-fadeIn">
+            <!-- Header Card (High Contrast Explicit Style) -->
+            <div class="rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden" style="background: linear-gradient(135deg, #1E1B4B 0%, #2F2D74 100%); border: 1px solid rgba(255,255,255,0.1);">
               <div class="relative z-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-bold uppercase tracking-wider mb-2.5">
                   <i class="bi bi-images"></i> Bộ Sưu Tập Thực Tế
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">THƯ VIỆN HÌNH ẢNH PHÂN KHU & TIỆN ÍCH</h2>
-                <p class="text-white/80 text-sm mt-2 max-w-2xl">
-                  Khám phá toàn bộ hình ảnh thực tế về không gian hành lang, nội thất bàn giao và tiện ích trong nhà cao cấp tại dự án The Parkland.
+                <h2 class="text-xl sm:text-2xl font-black tracking-tight" style="color: #FFFFFF !important;">
+                  THƯ VIỆN HÌNH ẢNH PHÂN KHU & TIỆN ÍCH
+                </h2>
+                <p class="text-xs sm:text-sm mt-1.5 max-w-2xl leading-relaxed" style="color: #CBD5E1 !important;">
+                  Khám phá các album ảnh thực tế về không gian sảnh, hành lang, nội thất bàn giao và tiện ích trong nhà tại dự án The Parkland.
                 </p>
               </div>
             </div>
 
-            <!-- Category Filter Tabs -->
-            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+            <!-- Category Navigation Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none w-full sm:w-auto">
+                <!-- Nút Danh Mục Album -->
+                <button 
+                  @click="activeCatFilter = 'albums'"
+                  :class="activeCatFilter === 'albums' ? 'bg-[#2F2D74] text-white shadow-md' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'"
+                  class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all duration-200 flex items-center gap-2 cursor-pointer">
+                  <i class="bi bi-journal-album text-amber-400"></i>
+                  Danh Sách Album ({{ Object.keys(categoryMapData).length }})
+                </button>
+
+                <!-- Nút lọc từng Album -->
+                <button 
+                  v-for="(cat, key) in categoryMapData" 
+                  :key="key"
+                  @click="activeCatFilter = key"
+                  :class="activeCatFilter === key ? 'bg-[#2F2D74] text-white shadow-md' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'"
+                  class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all duration-200 flex items-center gap-2 cursor-pointer">
+                  <i class="bi bi-folder-fill text-amber-500"></i>
+                  {{ cat.name }} ({{ cat.images.length }})
+                </button>
+              </div>
+
+              <!-- Nút Xem Tất Cả Dạng Lưới -->
               <button 
+                v-if="activeCatFilter !== 'all'"
                 @click="activeCatFilter = 'all'"
-                :class="activeCatFilter === 'all' ? 'bg-[#2F2D74] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
-                class="px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm whitespace-nowrap transition-all duration-200 flex items-center gap-2 cursor-pointer">
-                <i class="bi bi-grid-fill"></i>
-                Tất cả ({{ allCategoryImagesList.length }})
-              </button>
-              
-              <button 
-                v-for="(cat, key) in categoryMapData" 
-                :key="key"
-                @click="activeCatFilter = key"
-                :class="activeCatFilter === key ? 'bg-[#2F2D74] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
-                class="px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm whitespace-nowrap transition-all duration-200 flex items-center gap-2 cursor-pointer">
-                <i class="bi bi-folder-fill text-amber-500"></i>
-                {{ cat.name }} ({{ cat.images.length }})
+                class="text-xs font-bold text-[#2F2D74] hover:underline flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 border border-blue-100 cursor-pointer">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+                Xem tất cả {{ allCategoryImagesList.length }} ảnh
               </button>
             </div>
 
-            <!-- Images Grid (Strict Mobile-Friendly 2 Columns) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-              <div 
-                v-for="(item, idx) in filteredCategoryImages" 
-                :key="idx"
-                @click="openImage(item.url)"
-                class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 cursor-pointer relative flex flex-col">
-                
-                <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100 relative">
-                  <img 
-                    :src="item.url" 
-                    :alt="item.categoryName"
-                    loading="lazy"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span class="w-10 h-10 rounded-full bg-white/90 text-[#2F2D74] flex items-center justify-center shadow-lg">
-                      <i class="bi bi-zoom-in text-lg"></i>
+            <!-- CHẾ ĐỘ 1: XEM DANH SÁCH ALBUM CARD (Folder View) -->
+            <div v-if="activeCatFilter === 'albums'" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div 
+                  v-for="(cat, key) in categoryMapData" 
+                  :key="key"
+                  @click="activeCatFilter = key"
+                  class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-200 cursor-pointer flex flex-col relative"
+                >
+                  <!-- Cover Image Stack Effect -->
+                  <div class="aspect-[16/10] w-full overflow-hidden bg-slate-900 relative">
+                    <img 
+                      :src="cat.images[0]" 
+                      :alt="cat.name"
+                      class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 opacity-90 group-hover:opacity-100" 
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    
+                    <!-- Image Count Badge -->
+                    <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-amber-300 border border-white/20 text-[11px] font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-lg">
+                      <i class="bi bi-images"></i> {{ cat.images.length }} hình ảnh
+                    </div>
+
+                    <!-- Folder Title overlay on bottom -->
+                    <div class="absolute bottom-3 left-4 right-4 text-white">
+                      <div class="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold text-amber-400 mb-1">
+                        <i class="bi bi-folder-fill"></i> Album dự án
+                      </div>
+                      <h3 class="text-base sm:text-lg font-black leading-tight text-white drop-shadow-md">
+                        {{ cat.name }}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <!-- Action Bar Footer -->
+                  <div class="px-4 py-3 bg-white flex items-center justify-between border-t border-slate-100 group-hover:bg-slate-50 transition-colors">
+                    <span class="text-xs font-bold text-[#2F2D74] flex items-center gap-1.5">
+                      Khám phá bộ sưu tập
+                    </span>
+                    <span class="w-8 h-8 rounded-full bg-[#2F2D74]/10 group-hover:bg-[#2F2D74] text-[#2F2D74] group-hover:text-white flex items-center justify-center transition-all">
+                      <i class="bi bi-arrow-right text-xs"></i>
                     </span>
                   </div>
                 </div>
-                
-                <div class="p-2.5 sm:p-3 flex items-center justify-between bg-white border-t border-slate-100">
-                  <span class="text-[11px] font-semibold text-slate-600 truncate">{{ item.categoryName }}</span>
-                  <i class="bi bi-arrows-angle-expand text-xs text-slate-400 group-hover:text-[#2F2D74]"></i>
+              </div>
+            </div>
+
+            <!-- CHẾ ĐỘ 2: XEM ẢNH TRONG MỘT ALBUM HOẶC TẤT CẢ (Image Grid View) -->
+            <div v-else class="space-y-4">
+              <!-- Breadcrumb Header inside Album -->
+              <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <div class="flex items-center gap-2 text-xs font-bold text-slate-700">
+                  <button @click="activeCatFilter = 'albums'" class="text-[#2F2D74] hover:underline flex items-center gap-1 cursor-pointer">
+                    <i class="bi bi-arrow-left"></i> Tất cả Album
+                  </button>
+                  <span class="text-slate-400">/</span>
+                  <span class="text-slate-900 font-extrabold">
+                    {{ activeCatFilter === 'all' ? 'Tất cả hình ảnh (' + allCategoryImagesList.length + ')' : categoryMapData[activeCatFilter]?.name + ' (' + filteredCategoryImages.length + ' ảnh)' }}
+                  </span>
+                </div>
+
+                <button 
+                  @click="activeCatFilter = 'albums'"
+                  class="text-xs font-bold text-slate-600 hover:text-[#2F2D74] bg-white border border-slate-200 px-3 py-1.5 rounded-lg shadow-xs cursor-pointer flex items-center gap-1">
+                  <i class="bi bi-grid"></i> Đổi Album
+                </button>
+              </div>
+
+              <!-- Images Grid (Strict Mobile-Friendly 2 Columns) -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div 
+                  v-for="(item, idx) in filteredCategoryImages" 
+                  :key="idx"
+                  @click="openImage(item.url)"
+                  class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 cursor-pointer relative flex flex-col">
+                  
+                  <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100 relative">
+                    <img 
+                      :src="item.url" 
+                      :alt="item.categoryName"
+                      loading="lazy"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span class="w-10 h-10 rounded-full bg-white/90 text-[#2F2D74] flex items-center justify-center shadow-lg">
+                        <i class="bi bi-zoom-in text-lg"></i>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="p-2.5 sm:p-3 flex items-center justify-between bg-white border-t border-slate-100">
+                    <span class="text-[11px] font-semibold text-slate-600 truncate">{{ item.categoryName }}</span>
+                    <i class="bi bi-arrows-angle-expand text-xs text-slate-400 group-hover:text-[#2F2D74]"></i>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
 
 
@@ -4781,7 +4867,7 @@
 
         // Quản lý Thư viện hình ảnh phân loại
         const categoryMapData = ref(window.__CATEGORY_IMAGES__ || {});
-        const activeCatFilter = ref('all');
+        const activeCatFilter = ref('albums');
 
         const allCategoryImagesList = computed(() => {
           const list = [];
@@ -4803,7 +4889,7 @@
         });
 
         const filteredCategoryImages = computed(() => {
-          if (activeCatFilter.value === 'all') {
+          if (activeCatFilter.value === 'albums' || activeCatFilter.value === 'all') {
             return allCategoryImagesList.value;
           }
           return allCategoryImagesList.value.filter(img => img.categoryKey === activeCatFilter.value);
